@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "InnerLoop LLC Plugin",
+	"Description": "InnerLoop LLC proprietary functions. Doesn't that sound fancy?",
+	"Category": "Marketplace",
+	"CreatedBy": "InnerLoop LLC",
+	"CreatedByURL": "https://www.superhockeyball.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "4.21.0",
+	"CanContainContent": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "InnerLoopLLC",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

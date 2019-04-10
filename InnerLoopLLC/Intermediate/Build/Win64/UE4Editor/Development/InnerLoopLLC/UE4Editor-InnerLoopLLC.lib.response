@@ -1,0 +1,13 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-InnerLoopLLC.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.cpp.obj"
+"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.gen.cpp.obj"
+"H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\PCLaunch.rc.res"
+/OUT:"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\UE4Editor-InnerLoopLLC.lib"
