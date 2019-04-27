@@ -19,6 +19,7 @@
 #include "Features/IModularFeatures.h"
 #include "XRMotionControllerBase.h"
 #include "XRTrackingSystemBase.h"
+#include "Misc/FileHelper.h"
 
 UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -87,4 +88,13 @@ void UInnerLoopFunctionLibrary::SetBasePositionZ(float Zpos)
 		GEngine->XRSystem->SetBasePosition(NewPosition);
 
 	}
+}
+
+FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
+{
+	FString FileData = "";
+	
+	FFileHelper::LoadFileToString(FileData, *File);
+
+	return FileData;
 }

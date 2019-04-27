@@ -19,8 +19,8 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopLLC_init() {}
 			static const UE4CodeGen_Private::FPackageParams PackageParams = {
 				"/Script/InnerLoopLLC",
 				PKG_CompiledIn | 0x00000000,
-				0x7B8E39E8,
-				0x1799CEB3,
+				0x19A2A8FA,
+				0xAAD9EFB9,
 				nullptr, 0,
 				METADATA_PARAMS(nullptr, 0)
 			};

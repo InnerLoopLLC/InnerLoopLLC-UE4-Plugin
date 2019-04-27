@@ -36,4 +36,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoopLLC|HMD")
 		static void SetBasePositionZ(float Zpos = 0);
+
+	UFUNCTION(BlueprintPure, Category = "InnerLoopLLC")
+		static FString GetTextFromFile(FString File = "");
 };
