@@ -16,6 +16,22 @@ struct FVector;
 
 #define Engine_Plugins_Marketplace_InnerLoopLLC_Source_InnerLoopLLC_Private_InnerLoopFunctions_h_18_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execRHIVendorName) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FName*)Z_Param__Result=UInnerLoopFunctionLibrary::RHIVendorName(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetGPUAdapterName) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FString*)Z_Param__Result=UInnerLoopFunctionLibrary::GetGPUAdapterName(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execGetTextFromFile) \
 	{ \
 		P_GET_PROPERTY(UStrProperty,Z_Param_File); \
@@ -78,6 +94,22 @@ struct FVector;
 
 
 #define Engine_Plugins_Marketplace_InnerLoopLLC_Source_InnerLoopLLC_Private_InnerLoopFunctions_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execRHIVendorName) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FName*)Z_Param__Result=UInnerLoopFunctionLibrary::RHIVendorName(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetGPUAdapterName) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FString*)Z_Param__Result=UInnerLoopFunctionLibrary::GetGPUAdapterName(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execGetTextFromFile) \
 	{ \

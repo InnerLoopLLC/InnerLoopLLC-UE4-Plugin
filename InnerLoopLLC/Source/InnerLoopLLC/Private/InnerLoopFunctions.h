@@ -25,7 +25,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetProjectVersion();
 
-	UFUNCTION(BlueprintCallable, Category = "InnerLoopLLC|HMD")
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|HMD")
 		static void SetCenterPosition(float Xpos = 0, float Ypos = 0);
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
@@ -34,9 +34,15 @@ public:
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FVector GetBasePosition();
 
-	UFUNCTION(BlueprintCallable, Category = "InnerLoopLLC|HMD")
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|HMD")
 		static void SetBasePositionZ(float Zpos = 0);
 
-	UFUNCTION(BlueprintPure, Category = "InnerLoopLLC")
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetTextFromFile(FString File = "");
+	
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
+		static FString GetGPUAdapterName();
+
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
+		static FName RHIVendorName();
 };

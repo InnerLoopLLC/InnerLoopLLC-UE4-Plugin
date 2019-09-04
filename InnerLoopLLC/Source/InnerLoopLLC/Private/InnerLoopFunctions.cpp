@@ -20,6 +20,8 @@
 #include "XRMotionControllerBase.h"
 #include "XRTrackingSystemBase.h"
 #include "Misc/FileHelper.h"
+#include "Runtime/RHI/Public/RHI.h"
+//#include "Runtime/RHI/Public/RHI.h"
 
 UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -37,8 +39,6 @@ FString UInnerLoopFunctionLibrary::GetProjectVersion()
 	
 	GConfig->GetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), ProjectVersion, GGameIni);
 	
-	//FString ProjectVersion = TEXT("Test String");
-
 	return ProjectVersion;
 }
 
@@ -97,4 +97,14 @@ FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
 	FFileHelper::LoadFileToString(FileData, *File);
 
 	return FileData;
+}
+
+FString UInnerLoopFunctionLibrary::GetGPUAdapterName()
+{
+	return GRHIAdapterName;
+}
+
+FName UInnerLoopFunctionLibrary::RHIVendorName()
+{
+	return FName(RHIVendorIdToString());
 }

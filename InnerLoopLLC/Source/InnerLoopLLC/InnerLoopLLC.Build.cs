@@ -36,7 +36,8 @@ public class InnerLoopLLC : ModuleRules
                 "CoreUObject",
                 "Engine",
                 "HeadMountedDisplay",
-                "Projects"
+                "Projects",
+				"RHI"
             }
 			);
     }

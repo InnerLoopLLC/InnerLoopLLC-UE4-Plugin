@@ -191,12 +191,12 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt"
-/FI"H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
-/Yu"H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
-/Fp"H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.pch"
-"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.cpp"
-/FI"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Definitions.InnerLoopLLC.h"
-/Fo"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.cpp.obj"
+/FI"H:\GitHub\UnrealEngine-Oculus\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
+/Yu"H:\GitHub\UnrealEngine-Oculus\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
+/Fp"H:\GitHub\UnrealEngine-Oculus\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.pch"
+"H:\GitHub\UnrealEngine-Oculus\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.cpp"
+/FI"H:\GitHub\UnrealEngine-Oculus\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Definitions.InnerLoopLLC.h"
+/Fo"H:\GitHub\UnrealEngine-Oculus\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.cpp.obj"
 /TP
 /GR-
 /W4
