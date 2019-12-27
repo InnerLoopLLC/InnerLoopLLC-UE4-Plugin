@@ -7,8 +7,16 @@
 #include "UObject/ObjectMacros.h"
 #include "HeadMountedDisplayTypes.h"
 #include "IIdentifiableXRDevice.h" // for FXRDeviceId
+#include "Components/SplineComponent.h"
 #include "InnerLoopFunctions.generated.h"
 
+
+UENUM(BlueprintType)
+enum class EBoolBranches : uint8 
+{
+	_True,
+	_False
+};
 
 
 UCLASS()
@@ -20,7 +28,10 @@ class INNERLOOPLLC_API UInnerLoopFunctionLibrary : public UBlueprintFunctionLibr
 public:
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
-		static bool AlwaysTrue();
+		static bool IsWithEditor();
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC", Meta = (ExpandEnumAsExecs = Branch))
+		static void IfWithEditor(EBoolBranches& Branch);
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetProjectVersion();
@@ -45,4 +56,10 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIVendorName();
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|Splines")
+		static void setRotationAtSplinePoint(USplineComponent* target, const int32 point_index, const FRotator rotation);
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
+		static void PrintToLog(const FString& InString);
 };

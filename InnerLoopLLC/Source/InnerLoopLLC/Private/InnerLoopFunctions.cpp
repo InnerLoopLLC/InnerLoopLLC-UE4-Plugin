@@ -4,7 +4,6 @@
 #include "InnerLoopLLC.h"
 
 #include "CoreGlobals.h"
-//#include "ConfigCacheIni.h"
 #include "CoreMinimal.h"
 
 #include "HeadMountedDisplayFunctionLibrary.h"
@@ -21,16 +20,35 @@
 #include "XRTrackingSystemBase.h"
 #include "Misc/FileHelper.h"
 #include "Runtime/RHI/Public/RHI.h"
-//#include "Runtime/RHI/Public/RHI.h"
+#include "Kismet/GameplayStatics.h"
 
 UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 }
 
-bool UInnerLoopFunctionLibrary::AlwaysTrue()
+bool UInnerLoopFunctionLibrary::IsWithEditor()
 {
+#if WITH_EDITOR
+
 	return true;
+
+#endif //WITH_EDITOR
+
+	return false;
+}
+
+void UInnerLoopFunctionLibrary::IfWithEditor(EBoolBranches& Branch)
+{
+#if WITH_EDITOR
+
+	Branch = EBoolBranches::_True;
+
+#else
+
+	Branch = EBoolBranches::_False;
+
+#endif //WITH_EDITOR
 }
 
 FString UInnerLoopFunctionLibrary::GetProjectVersion()
@@ -107,4 +125,24 @@ FString UInnerLoopFunctionLibrary::GetGPUAdapterName()
 FName UInnerLoopFunctionLibrary::RHIVendorName()
 {
 	return FName(RHIVendorIdToString());
+}
+
+void UInnerLoopFunctionLibrary::setRotationAtSplinePoint(USplineComponent* target, const int32 point_index, const FRotator rotation)
+{
+	FInterpCurveQuat& SplineRotInfo = target->GetSplinePointsRotation(); //get the array of rotation data in the spline component
+
+	FInterpCurvePoint<FQuat>& EditedRotPoint = SplineRotInfo.Points[point_index]; //get the point to edit
+
+	FQuat NewRot = rotation.Quaternion(); //convert the given rotation into a quaternion
+
+	EditedRotPoint.OutVal = NewRot; //set the new rotation of the selected point
+}
+
+void UInnerLoopFunctionLibrary::PrintToLog(const FString& InString)
+{
+	
+	FString Prefix = "InnerLoop Log: ";
+	FString FinalString = Prefix + *InString;
+	
+	UE_LOG(LogBlueprintUserMessages, Log, TEXT("%s"), *FinalString);
 }

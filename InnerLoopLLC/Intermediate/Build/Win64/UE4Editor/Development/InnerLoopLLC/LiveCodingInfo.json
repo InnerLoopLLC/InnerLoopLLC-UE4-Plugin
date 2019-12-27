@@ -1,0 +1,13 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.InnerLoopLLC.cpp.obj": [
+			"InnerLoopFunctions.cpp.obj",
+			"InnerLoopLLC.cpp.obj"
+		],
+		"Module.InnerLoopLLC.gen.cpp.obj": [
+			"InnerLoopFunctions.gen.cpp.obj",
+			"InnerLoopLLC.init.gen.cpp.obj"
+		]
+	}
+}

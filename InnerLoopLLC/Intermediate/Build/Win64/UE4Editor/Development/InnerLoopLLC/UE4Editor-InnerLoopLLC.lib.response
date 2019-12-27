@@ -6,8 +6,9 @@
 /NAME:"UE4Editor-InnerLoopLLC.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"H:\GitHub\UnrealEngine-Oculus\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
-"H:\GitHub\UnrealEngine-Oculus\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.cpp.obj"
-"H:\GitHub\UnrealEngine-Oculus\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.gen.cpp.obj"
-"H:\GitHub\UnrealEngine-Oculus\Engine\Intermediate\Build\Win64\UE4Editor\Development\PCLaunch.rc.res"
-/OUT:"H:\GitHub\UnrealEngine-Oculus\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\UE4Editor-InnerLoopLLC.lib"
+"H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.cpp.obj"
+"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Module.InnerLoopLLC.gen.cpp.obj"
+"H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\Default.rc2.res"
+/OUT:"H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\UE4Editor-InnerLoopLLC.lib"
+/INCLUDE:IMPLEMENT_MODULE_InnerLoopLLC
