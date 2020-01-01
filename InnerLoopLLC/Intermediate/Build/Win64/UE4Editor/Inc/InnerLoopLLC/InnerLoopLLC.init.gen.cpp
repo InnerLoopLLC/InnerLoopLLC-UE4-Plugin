@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopLLC_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xA77C9F21,
+				0x02CD663D,
 				0x5C4BACE3,
 				METADATA_PARAMS(nullptr, 0)
 			};

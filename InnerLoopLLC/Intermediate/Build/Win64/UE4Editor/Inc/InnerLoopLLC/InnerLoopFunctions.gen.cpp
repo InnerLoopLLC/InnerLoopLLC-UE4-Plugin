@@ -123,7 +123,7 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition_Statics::Function_MetaDataParams[] = {
-		{ "Category", "InnerLoop LLC|HMD" },
+		{ "Category", "InnerLoop LLC|XR" },
 		{ "ModuleRelativePath", "Public/InnerLoopFunctions.h" },
 	};
 #endif
@@ -189,7 +189,7 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::Function_MetaDataParams[] = {
-		{ "Category", "InnerLoop LLC|HMD" },
+		{ "Category", "InnerLoop LLC|XR" },
 		{ "ModuleRelativePath", "Public/InnerLoopFunctions.h" },
 	};
 #endif
@@ -442,7 +442,7 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetBasePositionZ_Statics::Function_MetaDataParams[] = {
-		{ "Category", "InnerLoop LLC|HMD" },
+		{ "Category", "InnerLoop LLC|XR" },
 		{ "CPP_Default_Zpos", "0.000000" },
 		{ "ModuleRelativePath", "Public/InnerLoopFunctions.h" },
 	};
@@ -480,7 +480,7 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::Function_MetaDataParams[] = {
-		{ "Category", "InnerLoop LLC|HMD" },
+		{ "Category", "InnerLoop LLC|XR" },
 		{ "CPP_Default_Xpos", "0.000000" },
 		{ "CPP_Default_Ypos", "0.000000" },
 		{ "ModuleRelativePath", "Public/InnerLoopFunctions.h" },
@@ -548,17 +548,17 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_InnerLoopLLC,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UInnerLoopFunctionLibrary_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition, "GetBasePosition" }, // 582519158
+		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition, "GetBasePosition" }, // 3735555165
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetGPUAdapterName, "GetGPUAdapterName" }, // 3812837057
-		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition, "GetHMDPosition" }, // 98803508
+		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition, "GetHMDPosition" }, // 4065060099
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetProjectVersion, "GetProjectVersion" }, // 2548867967
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetTextFromFile, "GetTextFromFile" }, // 2322718866
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_IfWithEditor, "IfWithEditor" }, // 1778917800
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_IsWithEditor, "IsWithEditor" }, // 267577838
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_PrintToLog, "PrintToLog" }, // 1867093070
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_RHIVendorName, "RHIVendorName" }, // 1109665313
-		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetBasePositionZ, "SetBasePositionZ" }, // 1394052091
-		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition, "SetCenterPosition" }, // 970005584
+		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetBasePositionZ, "SetBasePositionZ" }, // 1428055573
+		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition, "SetCenterPosition" }, // 3092619974
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetProjectVersion, "SetProjectVersion" }, // 3763878920
 	};
 #if WITH_METADATA
@@ -594,7 +594,7 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UInnerLoopFunctionLibrary, 1258803352);
+	IMPLEMENT_CLASS(UInnerLoopFunctionLibrary, 3868806481);
 	template<> INNERLOOPLLC_API UClass* StaticClass<UInnerLoopFunctionLibrary>()
 	{
 		return UInnerLoopFunctionLibrary::StaticClass();

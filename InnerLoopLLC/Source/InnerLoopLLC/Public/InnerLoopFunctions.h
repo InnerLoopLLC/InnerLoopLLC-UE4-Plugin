@@ -39,16 +39,16 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
 		static void SetProjectVersion(FString version);
 
-	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|HMD")
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void SetCenterPosition(float Xpos = 0, float Ypos = 0);
 
-	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|HMD")
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
 		static FVector GetHMDPosition();
 
-	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|HMD")
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
 		static FVector GetBasePosition();
 
-	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|HMD")
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void SetBasePositionZ(float Zpos = 0);
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
