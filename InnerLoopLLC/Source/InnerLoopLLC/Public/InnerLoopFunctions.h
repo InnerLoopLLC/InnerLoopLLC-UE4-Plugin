@@ -36,13 +36,16 @@ public:
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetProjectVersion();
 
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
+		static void SetProjectVersion(FString version);
+
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|HMD")
 		static void SetCenterPosition(float Xpos = 0, float Ypos = 0);
 
-	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|HMD")
 		static FVector GetHMDPosition();
 
-	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|HMD")
 		static FVector GetBasePosition();
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|HMD")
@@ -56,9 +59,6 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIVendorName();
-
-	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|Splines")
-		static void setRotationAtSplinePoint(USplineComponent* target, const int32 point_index, const FRotator rotation);
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
 		static void PrintToLog(const FString& InString);

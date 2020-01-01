@@ -1,6 +1,6 @@
 H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Development\InnerLoopLLC\Definitions.InnerLoopLLC.h
 H:/GitHub/UnrealEngine/Engine/Plugins/Marketplace/InnerLoopLLC/Source/InnerLoopLLC/Private/InnerLoopFunctions.cpp
-h:\github\unrealengine\engine\plugins\marketplace\innerloopllc\source\innerloopllc\private\InnerLoopFunctions.h
+H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Source\InnerLoopLLC\Public\InnerLoopFunctions.h
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\HeadMountedDisplay\Public\HeadMountedDisplayTypes.h
 H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\HeadMountedDisplay\HeadMountedDisplayTypes.generated.h
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\HeadMountedDisplay\Public\IIdentifiableXRDevice.h
@@ -8,8 +8,8 @@ H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\HeadMounted
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Classes\Components/SplineComponent.h
 H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SplineComponent.generated.h
 H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Build\Win64\UE4Editor\Inc\InnerLoopLLC\InnerLoopFunctions.generated.h
-h:\github\unrealengine\engine\plugins\marketplace\innerloopllc\source\innerloopllc\private\InnerLoopLLC.h
-H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Source\InnerLoopLLC\Public\IInnerLoopLLC.h
+H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Source\InnerLoopLLC\Public\InnerLoopLLC.h
+h:\github\unrealengine\engine\plugins\marketplace\innerloopllc\source\innerloopllc\public\IInnerLoopLLC.h
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\HeadMountedDisplay\Public\HeadMountedDisplayFunctionLibrary.h
 H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\HeadMountedDisplay\HeadMountedDisplayFunctionLibrary.generated.h
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\HeadMountedDisplay\Public\IHeadMountedDisplay.h
@@ -44,4 +44,4 @@ h:\github\unrealengine\engine\source\runtime\engine\classes\kismet\GameplayStati
 H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
 H:/GitHub/UnrealEngine/Engine/Plugins/Marketplace/InnerLoopLLC/Source/InnerLoopLLC/Private/InnerLoopLLC.cpp
-h:\github\unrealengine\engine\plugins\marketplace\innerloopllc\source\innerloopllc\private\InnerLoopLLC.h
+H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Source\InnerLoopLLC\Public\InnerLoopLLC.h

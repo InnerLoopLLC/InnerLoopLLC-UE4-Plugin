@@ -2,7 +2,7 @@ H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Intermediate\Buil
 H:/GitHub/UnrealEngine/Engine/Plugins/Marketplace/InnerLoopLLC/Intermediate/Build/Win64/UE4Editor/Inc/InnerLoopLLC/InnerLoopFunctions.gen.cpp
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
-H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Source\InnerLoopLLC/Private/InnerLoopFunctions.h
+H:\GitHub\UnrealEngine\Engine\Plugins\Marketplace\InnerLoopLLC\Source\InnerLoopLLC/Public/InnerLoopFunctions.h
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\HeadMountedDisplay\Public\HeadMountedDisplayTypes.h
 H:\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\HeadMountedDisplay\HeadMountedDisplayTypes.generated.h
 H:\GitHub\UnrealEngine\Engine\Source\Runtime\HeadMountedDisplay\Public\IIdentifiableXRDevice.h

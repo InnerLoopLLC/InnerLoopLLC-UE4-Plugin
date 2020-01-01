@@ -56,8 +56,19 @@ FString UInnerLoopFunctionLibrary::GetProjectVersion()
 	FString ProjectVersion;
 	
 	GConfig->GetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), ProjectVersion, GGameIni);
-	
+	   	
 	return ProjectVersion;
+}
+
+void UInnerLoopFunctionLibrary::SetProjectVersion(FString Version)
+{
+	FString ProjectVersion;
+
+	GConfig->GetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), ProjectVersion, GGameIni);
+
+	FString UpdatedVersion = ProjectVersion + Version;
+	
+	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *UpdatedVersion, GGameIni);
 }
 
 void UInnerLoopFunctionLibrary::SetCenterPosition(float Xpos, float Ypos)
@@ -125,17 +136,6 @@ FString UInnerLoopFunctionLibrary::GetGPUAdapterName()
 FName UInnerLoopFunctionLibrary::RHIVendorName()
 {
 	return FName(RHIVendorIdToString());
-}
-
-void UInnerLoopFunctionLibrary::setRotationAtSplinePoint(USplineComponent* target, const int32 point_index, const FRotator rotation)
-{
-	FInterpCurveQuat& SplineRotInfo = target->GetSplinePointsRotation(); //get the array of rotation data in the spline component
-
-	FInterpCurvePoint<FQuat>& EditedRotPoint = SplineRotInfo.Points[point_index]; //get the point to edit
-
-	FQuat NewRot = rotation.Quaternion(); //convert the given rotation into a quaternion
-
-	EditedRotPoint.OutVal = NewRot; //set the new rotation of the selected point
 }
 
 void UInnerLoopFunctionLibrary::PrintToLog(const FString& InString)
