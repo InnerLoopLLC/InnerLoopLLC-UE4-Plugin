@@ -21,7 +21,6 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetGPUAdapterName();
-	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition();
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetProjectVersion();
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetTextFromFile();
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_IfWithEditor();
@@ -29,7 +28,6 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_PrintToLog();
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_RHIVendorName();
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetBasePositionZ();
-	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition();
 	INNERLOOPLLC_API UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetProjectVersion();
 // End Cross Module References
 	static UEnum* EBoolBranches_StaticEnum()
@@ -91,7 +89,6 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 		static const FNameNativePtrPair Funcs[] = {
 			{ "GetBasePosition", &UInnerLoopFunctionLibrary::execGetBasePosition },
 			{ "GetGPUAdapterName", &UInnerLoopFunctionLibrary::execGetGPUAdapterName },
-			{ "GetHMDPosition", &UInnerLoopFunctionLibrary::execGetHMDPosition },
 			{ "GetProjectVersion", &UInnerLoopFunctionLibrary::execGetProjectVersion },
 			{ "GetTextFromFile", &UInnerLoopFunctionLibrary::execGetTextFromFile },
 			{ "IfWithEditor", &UInnerLoopFunctionLibrary::execIfWithEditor },
@@ -99,7 +96,6 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 			{ "PrintToLog", &UInnerLoopFunctionLibrary::execPrintToLog },
 			{ "RHIVendorName", &UInnerLoopFunctionLibrary::execRHIVendorName },
 			{ "SetBasePositionZ", &UInnerLoopFunctionLibrary::execSetBasePositionZ },
-			{ "SetCenterPosition", &UInnerLoopFunctionLibrary::execSetCenterPosition },
 			{ "SetProjectVersion", &UInnerLoopFunctionLibrary::execSetProjectVersion },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
@@ -124,7 +120,9 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition_Statics::Function_MetaDataParams[] = {
 		{ "Category", "InnerLoop LLC|XR" },
+		{ "Comment", "//UFUNCTION(BlueprintPure, Category = \"InnerLoop LLC|XR\")\n//\x09static FVector GetHMDPosition();\n" },
 		{ "ModuleRelativePath", "Public/InnerLoopFunctions.h" },
+		{ "ToolTip", "UFUNCTION(BlueprintPure, Category = \"InnerLoop LLC|XR\")\n       static FVector GetHMDPosition();" },
 	};
 #endif
 	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInnerLoopFunctionLibrary, nullptr, "GetBasePosition", nullptr, nullptr, sizeof(InnerLoopFunctionLibrary_eventGetBasePosition_Parms), Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14822401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition_Statics::Function_MetaDataParams)) };
@@ -167,39 +165,6 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetGPUAdapterName_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics
-	{
-		struct InnerLoopFunctionLibrary_eventGetHMDPosition_Parms
-		{
-			FVector ReturnValue;
-		};
-		static const UE4CodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
-		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UE4CodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(InnerLoopFunctionLibrary_eventGetHMDPosition_Parms, ReturnValue), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::Function_MetaDataParams[] = {
-		{ "Category", "InnerLoop LLC|XR" },
-		{ "ModuleRelativePath", "Public/InnerLoopFunctions.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInnerLoopFunctionLibrary, nullptr, "GetHMDPosition", nullptr, nullptr, sizeof(InnerLoopFunctionLibrary_eventGetHMDPosition_Parms), Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14822401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -457,45 +422,6 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics
-	{
-		struct InnerLoopFunctionLibrary_eventSetCenterPosition_Parms
-		{
-			float Xpos;
-			float Ypos;
-		};
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Ypos;
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Xpos;
-		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UE4CodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::NewProp_Ypos = { "Ypos", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(InnerLoopFunctionLibrary_eventSetCenterPosition_Parms, Ypos), METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::NewProp_Xpos = { "Xpos", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(InnerLoopFunctionLibrary_eventSetCenterPosition_Parms, Xpos), METADATA_PARAMS(nullptr, 0) };
-	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::NewProp_Ypos,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::NewProp_Xpos,
-	};
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::Function_MetaDataParams[] = {
-		{ "Category", "InnerLoop LLC|XR" },
-		{ "CPP_Default_Xpos", "0.000000" },
-		{ "CPP_Default_Ypos", "0.000000" },
-		{ "ModuleRelativePath", "Public/InnerLoopFunctions.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInnerLoopFunctionLibrary, nullptr, "SetCenterPosition", nullptr, nullptr, sizeof(InnerLoopFunctionLibrary_eventSetCenterPosition_Parms), Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04022401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
 	struct Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetProjectVersion_Statics
 	{
 		struct InnerLoopFunctionLibrary_eventSetProjectVersion_Parms
@@ -548,9 +474,8 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_InnerLoopLLC,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UInnerLoopFunctionLibrary_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition, "GetBasePosition" }, // 3735555165
+		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetBasePosition, "GetBasePosition" }, // 1656298841
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetGPUAdapterName, "GetGPUAdapterName" }, // 3812837057
-		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetHMDPosition, "GetHMDPosition" }, // 4065060099
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetProjectVersion, "GetProjectVersion" }, // 2548867967
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_GetTextFromFile, "GetTextFromFile" }, // 2322718866
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_IfWithEditor, "IfWithEditor" }, // 1778917800
@@ -558,7 +483,6 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_PrintToLog, "PrintToLog" }, // 1867093070
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_RHIVendorName, "RHIVendorName" }, // 1109665313
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetBasePositionZ, "SetBasePositionZ" }, // 1428055573
-		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetCenterPosition, "SetCenterPosition" }, // 3092619974
 		{ &Z_Construct_UFunction_UInnerLoopFunctionLibrary_SetProjectVersion, "SetProjectVersion" }, // 3763878920
 	};
 #if WITH_METADATA
@@ -594,7 +518,7 @@ void EmptyLinkFunctionForGeneratedCodeInnerLoopFunctions() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UInnerLoopFunctionLibrary, 3868806481);
+	IMPLEMENT_CLASS(UInnerLoopFunctionLibrary, 1128901670);
 	template<> INNERLOOPLLC_API UClass* StaticClass<UInnerLoopFunctionLibrary>()
 	{
 		return UInnerLoopFunctionLibrary::StaticClass();

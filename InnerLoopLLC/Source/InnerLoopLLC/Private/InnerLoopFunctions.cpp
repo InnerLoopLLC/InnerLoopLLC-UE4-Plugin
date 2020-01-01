@@ -71,32 +71,32 @@ void UInnerLoopFunctionLibrary::SetProjectVersion(FString Version)
 	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *UpdatedVersion, GGameIni);
 }
 
-void UInnerLoopFunctionLibrary::SetCenterPosition(float Xpos, float Ypos)
-{
-	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
-	{
-		
-		FVector BasePosition = GEngine->XRSystem->GetBasePosition();
-		
-		FVector NewPosition = FVector(Xpos, Ypos, BasePosition.Z);
+//void UInnerLoopFunctionLibrary::SetCenterPosition(float Xpos, float Ypos)
+//{
+//	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
+//	{
+//		
+//		FVector BasePosition = GEngine->XRSystem->GetBasePosition();
+//		
+//		FVector NewPosition = FVector(Xpos, Ypos, BasePosition.Z);
+//
+//		GEngine->XRSystem->SetBasePosition(NewPosition);
+//		
+//	}
+//}
 
-		GEngine->XRSystem->SetBasePosition(NewPosition);
-		
-	}
-}
-
-FVector UInnerLoopFunctionLibrary::GetHMDPosition()
-{
-	FVector HMDPos;
-	FQuat HMDOrientation;
-	
-	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
-	{
-		GEngine->XRSystem->GetCurrentPose(IXRTrackingSystem::HMDDeviceId, HMDOrientation, HMDPos);
-	}
-
-	return HMDPos;
-}
+//FVector UInnerLoopFunctionLibrary::GetHMDPosition()
+//{
+//	FVector HMDPos;
+//	FQuat HMDOrientation;
+//	
+//	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
+//	{
+//		GEngine->XRSystem->GetCurrentPose(IXRTrackingSystem::HMDDeviceId, HMDOrientation, HMDPos);
+//	}
+//
+//	return HMDPos;
+//}
 
 FVector UInnerLoopFunctionLibrary::GetBasePosition()
 {

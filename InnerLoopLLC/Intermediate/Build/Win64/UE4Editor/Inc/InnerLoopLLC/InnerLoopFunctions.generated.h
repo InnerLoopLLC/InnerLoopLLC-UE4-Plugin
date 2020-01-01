@@ -68,24 +68,6 @@ enum class EBoolBranches : uint8;
 		P_NATIVE_END; \
 	} \
  \
-	DECLARE_FUNCTION(execGetHMDPosition) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		*(FVector*)Z_Param__Result=UInnerLoopFunctionLibrary::GetHMDPosition(); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execSetCenterPosition) \
-	{ \
-		P_GET_PROPERTY(UFloatProperty,Z_Param_Xpos); \
-		P_GET_PROPERTY(UFloatProperty,Z_Param_Ypos); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		UInnerLoopFunctionLibrary::SetCenterPosition(Z_Param_Xpos,Z_Param_Ypos); \
-		P_NATIVE_END; \
-	} \
- \
 	DECLARE_FUNCTION(execSetProjectVersion) \
 	{ \
 		P_GET_PROPERTY(UStrProperty,Z_Param_version); \
@@ -171,24 +153,6 @@ enum class EBoolBranches : uint8;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		*(FVector*)Z_Param__Result=UInnerLoopFunctionLibrary::GetBasePosition(); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execGetHMDPosition) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		*(FVector*)Z_Param__Result=UInnerLoopFunctionLibrary::GetHMDPosition(); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execSetCenterPosition) \
-	{ \
-		P_GET_PROPERTY(UFloatProperty,Z_Param_Xpos); \
-		P_GET_PROPERTY(UFloatProperty,Z_Param_Ypos); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		UInnerLoopFunctionLibrary::SetCenterPosition(Z_Param_Xpos,Z_Param_Ypos); \
 		P_NATIVE_END; \
 	} \
  \
