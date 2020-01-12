@@ -28,10 +28,10 @@ class INNERLOOPLLC_API UInnerLoopFunctionLibrary : public UBlueprintFunctionLibr
 public:
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
-		static bool IsWithEditor();
+		static bool WithEditor();
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC", Meta = (ExpandEnumAsExecs = Branch))
-		static void IfWithEditor(EBoolBranches& Branch);
+		static void IsWithEditor(EBoolBranches& Branch);
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetProjectVersion();

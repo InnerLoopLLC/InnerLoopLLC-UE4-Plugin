@@ -27,7 +27,7 @@ UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& O
 {
 }
 
-bool UInnerLoopFunctionLibrary::IsWithEditor()
+bool UInnerLoopFunctionLibrary::WithEditor()
 {
 #if WITH_EDITOR
 
@@ -38,7 +38,7 @@ bool UInnerLoopFunctionLibrary::IsWithEditor()
 	return false;
 }
 
-void UInnerLoopFunctionLibrary::IfWithEditor(EBoolBranches& Branch)
+void UInnerLoopFunctionLibrary::IsWithEditor(EBoolBranches& Branch)
 {
 #if WITH_EDITOR
 
