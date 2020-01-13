@@ -71,33 +71,6 @@ void UInnerLoopFunctionLibrary::SetProjectVersion(FString Version)
 	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *UpdatedVersion, GGameIni);
 }
 
-//void UInnerLoopFunctionLibrary::SetCenterPosition(float Xpos, float Ypos)
-//{
-//	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
-//	{
-//		
-//		FVector BasePosition = GEngine->XRSystem->GetBasePosition();
-//		
-//		FVector NewPosition = FVector(Xpos, Ypos, BasePosition.Z);
-//
-//		GEngine->XRSystem->SetBasePosition(NewPosition);
-//		
-//	}
-//}
-
-//FVector UInnerLoopFunctionLibrary::GetHMDPosition()
-//{
-//	FVector HMDPos;
-//	FQuat HMDOrientation;
-//	
-//	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
-//	{
-//		GEngine->XRSystem->GetCurrentPose(IXRTrackingSystem::HMDDeviceId, HMDOrientation, HMDPos);
-//	}
-//
-//	return HMDPos;
-//}
-
 FVector UInnerLoopFunctionLibrary::GetBasePosition()
 {
 	FVector BasePosition = GEngine->XRSystem->GetBasePosition();
@@ -105,17 +78,40 @@ FVector UInnerLoopFunctionLibrary::GetBasePosition()
 	return BasePosition;
 }
 
-void UInnerLoopFunctionLibrary::SetBasePositionZ(float Zpos)
+void UInnerLoopFunctionLibrary::SetBasePosition(FVector Position)
 {
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
 	{
+		GEngine->XRSystem->SetBasePosition(Position);
+	}
+}
 
-		FVector BasePosition = GEngine->XRSystem->GetBasePosition();
+void UInnerLoopFunctionLibrary::ResetOrientationAndPosition(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ)
+{
+	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
+	{
+		FVector OldBasePosition = GEngine->XRSystem->GetBasePosition();
+		
+		switch (Options)
+		{
+		case EOrientPositionSelector::Orientation:
+			GEngine->XRSystem->ResetOrientation(Yaw);
+			break;
+		case EOrientPositionSelector::Position:
+			GEngine->XRSystem->ResetPosition();
+			break;
+		default:
+			GEngine->XRSystem->ResetOrientationAndPosition(Yaw);
+		}
 
-		FVector NewPosition = FVector(BasePosition.X, BasePosition.Y, Zpos);
+		if (KeepZ == true)
+		{
+			FVector BasePosition = GEngine->XRSystem->GetBasePosition();
 
-		GEngine->XRSystem->SetBasePosition(NewPosition);
+			FVector NewPosition = FVector(BasePosition.X, BasePosition.Y, OldBasePosition.Z);
 
+			GEngine->XRSystem->SetBasePosition(NewPosition);
+		}
 	}
 }
 
