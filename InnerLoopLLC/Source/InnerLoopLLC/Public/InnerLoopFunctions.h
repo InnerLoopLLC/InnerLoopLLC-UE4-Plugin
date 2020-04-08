@@ -46,13 +46,13 @@ public:
 		static void SetBasePosition(FVector Position);
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
-		static void ResetOrientationAndPosition(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ);
+		static void ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ);
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetTextFromFile(FString File = "");
 	
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
-		static FString GetGPUAdapterName();
+		static FName GPUAdapterName();
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIVendorName();

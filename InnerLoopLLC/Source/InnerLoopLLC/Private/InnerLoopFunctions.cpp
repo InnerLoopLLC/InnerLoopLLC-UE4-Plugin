@@ -86,7 +86,7 @@ void UInnerLoopFunctionLibrary::SetBasePosition(FVector Position)
 	}
 }
 
-void UInnerLoopFunctionLibrary::ResetOrientationAndPosition(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ)
+void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ)
 {
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
 	{
@@ -124,9 +124,9 @@ FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
 	return FileData;
 }
 
-FString UInnerLoopFunctionLibrary::GetGPUAdapterName()
+FName UInnerLoopFunctionLibrary::GPUAdapterName()
 {
-	return GRHIAdapterName;
+	return FName(*GRHIAdapterName);
 }
 
 FName UInnerLoopFunctionLibrary::RHIVendorName()
