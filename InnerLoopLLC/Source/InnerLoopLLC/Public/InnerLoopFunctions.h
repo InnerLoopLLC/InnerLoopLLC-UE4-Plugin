@@ -7,7 +7,8 @@
 #include "UObject/ObjectMacros.h"
 #include "HeadMountedDisplayTypes.h"
 #include "IIdentifiableXRDevice.h" // for FXRDeviceId
-#include "Components/SplineComponent.h"
+#include "Engine/LevelStreaming.h"
+#include "Engine/LevelStreamingDynamic.h"
 #include "InnerLoopFunctions.generated.h"
 
 
@@ -48,6 +49,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ);
 
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
+		static UTexture* GetSpectatorScreenTexture();
+
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetTextFromFile(FString File = "");
 	
@@ -57,6 +61,18 @@ public:
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIVendorName();
 
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
+		static FString CPUBrand();
+
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
+		static FString CPUChipset();
+
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
+		static FString CPUVendor();
+
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
 		static void PrintToLog(const FString& InString);
+
+	UFUNCTION(Category = "InnerLoop LLC", BlueprintCallable, Meta = (keywords = "remove"))
+		static void UnloadStreamingLevel(ULevelStreamingDynamic* LevelInstance);
 };

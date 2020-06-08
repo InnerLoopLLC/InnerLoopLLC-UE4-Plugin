@@ -21,6 +21,8 @@
 #include "Misc/FileHelper.h"
 #include "Runtime/RHI/Public/RHI.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/LevelStreamingDynamic.h"
+//#include "GenericPlatform/GenericPlatform.h"
 
 UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -62,13 +64,7 @@ FString UInnerLoopFunctionLibrary::GetProjectVersion()
 
 void UInnerLoopFunctionLibrary::SetProjectVersion(FString Version)
 {
-	FString ProjectVersion;
-
-	GConfig->GetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), ProjectVersion, GGameIni);
-
-	FString UpdatedVersion = ProjectVersion + Version;
-	
-	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *UpdatedVersion, GGameIni);
+	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *Version, GGameIni);
 }
 
 FVector UInnerLoopFunctionLibrary::GetBasePosition()
@@ -115,6 +111,18 @@ void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(float Yaw, EOrientP
 	}
 }
 
+UTexture* UInnerLoopFunctionLibrary::GetSpectatorScreenTexture()
+{
+	IHeadMountedDisplay* HMD = GEngine->XRSystem.IsValid() ? GEngine->XRSystem->GetHMDDevice() : nullptr;
+	if (HMD)
+	{
+		ISpectatorScreenController* const Controller = HMD->GetSpectatorScreenController();
+		return Controller->GetSpectatorScreenTexture();	
+	}
+
+	return nullptr;
+}
+
 FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
 {
 	FString FileData = "";
@@ -134,6 +142,21 @@ FName UInnerLoopFunctionLibrary::RHIVendorName()
 	return FName(RHIVendorIdToString());
 }
 
+FString UInnerLoopFunctionLibrary::CPUBrand()
+{
+	return FWindowsPlatformMisc::GetCPUBrand();
+}
+
+FString UInnerLoopFunctionLibrary::CPUChipset()
+{
+	return FWindowsPlatformMisc::GetCPUChipset();
+}
+
+FString UInnerLoopFunctionLibrary::CPUVendor()
+{
+	return FWindowsPlatformMisc::GetCPUVendor();
+}
+
 void UInnerLoopFunctionLibrary::PrintToLog(const FString& InString)
 {
 	
@@ -141,4 +164,14 @@ void UInnerLoopFunctionLibrary::PrintToLog(const FString& InString)
 	FString FinalString = Prefix + *InString;
 	
 	UE_LOG(LogBlueprintUserMessages, Log, TEXT("%s"), *FinalString);
+}
+
+void UInnerLoopFunctionLibrary::UnloadStreamingLevel(ULevelStreamingDynamic* LevelInstance)
+{
+	if (LevelInstance)
+	{
+		LevelInstance->SetShouldBeLoaded(false);
+		LevelInstance->SetShouldBeVisible(false);
+		LevelInstance->SetIsRequestingUnloadAndRemoval(true);
+	}
 }
