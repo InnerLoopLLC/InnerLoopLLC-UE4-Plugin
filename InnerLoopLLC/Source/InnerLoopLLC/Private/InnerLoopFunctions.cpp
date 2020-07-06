@@ -144,24 +144,36 @@ FName UInnerLoopFunctionLibrary::RHIVendorName()
 
 FString UInnerLoopFunctionLibrary::CPUBrand()
 {
+#if PLATFORM_WINDOWS
 	return FWindowsPlatformMisc::GetCPUBrand();
+#else
+	return "";
+#endif
 }
 
 FString UInnerLoopFunctionLibrary::CPUChipset()
 {
+#if PLATFORM_WINDOWS
 	return FWindowsPlatformMisc::GetCPUChipset();
+#else
+	return "";
+#endif
 }
 
 FString UInnerLoopFunctionLibrary::CPUVendor()
 {
+#if PLATFORM_WINDOWS
 	return FWindowsPlatformMisc::GetCPUVendor();
+#else
+	return "";
+#endif
 }
 
-void UInnerLoopFunctionLibrary::PrintToLog(const FString& InString)
+void UInnerLoopFunctionLibrary::PrintToLog(const FString& InPrefix, const FString& InString)
 {
 	
 	FString Prefix = "InnerLoop Log: ";
-	FString FinalString = Prefix + *InString;
+	FString FinalString = Prefix + *InPrefix + *InString;
 	
 	UE_LOG(LogBlueprintUserMessages, Log, TEXT("%s"), *FinalString);
 }

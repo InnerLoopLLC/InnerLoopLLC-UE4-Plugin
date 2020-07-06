@@ -71,7 +71,7 @@ public:
 		static FString CPUVendor();
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
-		static void PrintToLog(const FString& InString);
+		static void PrintToLog(const FString& InPrefix, const FString& InString);
 
 	UFUNCTION(Category = "InnerLoop LLC", BlueprintCallable, Meta = (keywords = "remove"))
 		static void UnloadStreamingLevel(ULevelStreamingDynamic* LevelInstance);
