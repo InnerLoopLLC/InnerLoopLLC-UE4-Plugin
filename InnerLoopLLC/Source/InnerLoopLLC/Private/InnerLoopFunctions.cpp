@@ -20,6 +20,7 @@
 #include "XRTrackingSystemBase.h"
 #include "Misc/FileHelper.h"
 #include "Runtime/RHI/Public/RHI.h"
+#include "Runtime/RHI/Public/RHIDefinitions.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/LevelStreamingDynamic.h"
 //#include "GenericPlatform/GenericPlatform.h"
@@ -132,7 +133,7 @@ FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
 	return FileData;
 }
 
-FName UInnerLoopFunctionLibrary::GPUAdapterName()
+FName UInnerLoopFunctionLibrary::RHIAdapterName()
 {
 	return FName(*GRHIAdapterName);
 }
@@ -140,6 +141,11 @@ FName UInnerLoopFunctionLibrary::GPUAdapterName()
 FName UInnerLoopFunctionLibrary::RHIVendorName()
 {
 	return FName(RHIVendorIdToString());
+}
+
+FName UInnerLoopFunctionLibrary::RHIShaderFormatName()
+{
+	return FName(LegacyShaderPlatformToShaderFormat(GMaxRHIShaderPlatform));
 }
 
 FString UInnerLoopFunctionLibrary::CPUBrand()

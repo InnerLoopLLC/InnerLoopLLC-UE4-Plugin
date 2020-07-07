@@ -56,10 +56,13 @@ public:
 		static FString GetTextFromFile(FString File = "");
 	
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
-		static FName GPUAdapterName();
+		static FName RHIAdapterName();
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIVendorName();
+
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
+		static FName RHIShaderFormatName();
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FString CPUBrand();
