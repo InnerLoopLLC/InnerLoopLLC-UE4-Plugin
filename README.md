@@ -14,8 +14,14 @@ A simple plugin for Unreal Engine 4 which adds a few basic blueprint functions.
 * **SetProjectVersion** - Sets the Project Version. *(WARNING: not useful in its current form)*<br>
 * **GetTextFromFile** - Reads a .txt file and returns contents as a string. *(useful for including update notes in game)*<br>
 * **PrintToLog** - Prints string to log file in packaged builds. *(logs must be enabled for this to work in shipping builds)*<br>
-* **HMD|GetBasePosition** - Returns center of playspace.<br>
-* **HMD|SetBasePosition** - Sets new center of playspace.<br>
-* **HMD|ResetOrientationAndPosition** - Reorients placespace. *(useful for re-centering playspace without adjusting floor Z)*<br>
-* **System Info|GetGPUAdapterName** - Returns name of installed GPU. *(useful for automatically configuring settings)*<br>
+* **UnloadStreamingLevel** - Unloads and removes streaming level.<br>
+* **XR|GetBasePosition** - Returns center of playspace.<br>
+* **XR|SetBasePosition** - Sets new center of playspace.<br>
+* **XR|ResetOrientationAndPositionZ** - Reorients placespace. *(useful for re-centering playspace without adjusting floor Z)*<br>
+* **XR|GetSpectatorScreenTexture** - Gets the spectator screen texture.<br>
+* **System Info|RHIAdapterName** - Returns name of installed GPU. *(useful for automatically configuring settings)*<br>
 * **System Info|RHIVendorName** - Returns vendor of installed GPU.<br>
+* **System Info|RHIShaderFormatName** - Returns the name of the current shader format *(e.g. "PCD3D_ES31", etc)*<br>
+* **System Info|CPUBrand** - Returns as string the brand of installed CPU. *(Windows only for now)*<br>
+* **System Info|CPUChipset** - Returns as string the chipset of installed CPU. *(Windows only for now)*<br>
+* **System Info|CPUVendor** - Returns as string the vendor of installed CPU. *(Windows only for now)*<br>
