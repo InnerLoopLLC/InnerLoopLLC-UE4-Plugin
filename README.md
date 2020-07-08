@@ -21,7 +21,7 @@ A simple plugin for Unreal Engine 4 which adds a few basic blueprint functions.
 * **XR|GetSpectatorScreenTexture** - Gets the spectator screen texture.<br>
 * **System Info|RHIAdapterName** - Returns name of installed GPU. *(useful for automatically configuring settings)*<br>
 * **System Info|RHIVendorName** - Returns vendor of installed GPU.<br>
-* **System Info|RHIShaderFormatName** - Returns the name of the current shader format *(e.g. "PCD3D_ES31", etc)*<br>
+* **System Info|RHIShaderFormatName** - Returns the name of the current shader format *(e.g. "PCD3D_ES3_1", etc)*<br>
 * **System Info|CPUBrand** - Returns as string the brand of installed CPU. *(Windows only for now)*<br>
 * **System Info|CPUChipset** - Returns as string the chipset of installed CPU. *(Windows only for now)*<br>
 * **System Info|CPUVendor** - Returns as string the vendor of installed CPU. *(Windows only for now)*<br>
