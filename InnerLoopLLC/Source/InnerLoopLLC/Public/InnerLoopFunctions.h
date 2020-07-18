@@ -46,6 +46,18 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void SetBasePosition(FVector Position);
 
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
+		static FRotator GetBaseRotation();
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
+		static void SetBaseRotation(FRotator Rotation);
+
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
+		static FTransform GetBaseRotationAndPosition();
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
+		static void SetBaseRotationAndPosition(FVector Position, FRotator Rotation);
+
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ);
 

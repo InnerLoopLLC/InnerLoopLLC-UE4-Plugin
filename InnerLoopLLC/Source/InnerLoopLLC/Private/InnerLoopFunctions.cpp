@@ -83,6 +83,38 @@ void UInnerLoopFunctionLibrary::SetBasePosition(FVector Position)
 	}
 }
 
+FRotator UInnerLoopFunctionLibrary::GetBaseRotation()
+{
+	FRotator BaseRotation = GEngine->XRSystem->GetBaseRotation();
+
+	return BaseRotation;
+}
+
+void UInnerLoopFunctionLibrary::SetBaseRotation(FRotator Rotation)
+{
+	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
+	{
+		GEngine->XRSystem->SetBaseRotation(Rotation);
+	}
+}
+
+FTransform UInnerLoopFunctionLibrary::GetBaseRotationAndPosition()
+{
+	FRotator BaseRotation = GEngine->XRSystem->GetBaseRotation();
+	FVector BasePosition = GEngine->XRSystem->GetBasePosition();
+
+	return FTransform(BaseRotation, BasePosition);
+}
+
+void UInnerLoopFunctionLibrary::SetBaseRotationAndPosition(FVector Position, FRotator Rotation)
+{
+	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
+	{
+		GEngine->XRSystem->SetBaseRotation(Rotation);
+		GEngine->XRSystem->SetBasePosition(Position);
+	}
+}
+
 void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ)
 {
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
@@ -150,29 +182,17 @@ FName UInnerLoopFunctionLibrary::RHIShaderFormatName()
 
 FString UInnerLoopFunctionLibrary::CPUBrand()
 {
-#if PLATFORM_WINDOWS
-	return FWindowsPlatformMisc::GetCPUBrand();
-#else
-	return "";
-#endif
+	return FGenericPlatformMisc::GetCPUBrand();
 }
 
 FString UInnerLoopFunctionLibrary::CPUChipset()
 {
-#if PLATFORM_WINDOWS
-	return FWindowsPlatformMisc::GetCPUChipset();
-#else
-	return "";
-#endif
+	return FGenericPlatformMisc::GetCPUChipset();
 }
 
 FString UInnerLoopFunctionLibrary::CPUVendor()
 {
-#if PLATFORM_WINDOWS
-	return FWindowsPlatformMisc::GetCPUVendor();
-#else
-	return "";
-#endif
+	return FGenericPlatformMisc::GetCPUVendor();
 }
 
 void UInnerLoopFunctionLibrary::PrintToLog(const FString& InPrefix, const FString& InString)

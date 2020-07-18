@@ -20,9 +20,13 @@ A simple plugin for Unreal Engine 4 which adds a few basic blueprint functions.
 * **GetTextFromFile** - Reads a .txt file and returns contents as a string. *(useful for including update notes in game)*<br>
 * **PrintToLog** - Prints string to log file in packaged builds. *(logs must be enabled for this to work in shipping builds)*<br>
 * **UnloadStreamingLevel** - Unloads and removes streaming level.<br>
-* **XR|GetBasePosition** - Returns center of playspace.<br>
+* **XR|GetBasePosition** - Returns center of playspace as Vector.<br>
 * **XR|SetBasePosition** - Sets new center of playspace.<br>
-* **XR|ResetOrientationAndPositionZ** - Reorients placespace. *(useful for re-centering playspace without adjusting floor Z)*<br>
+* **XR|GetBaseRotation** - Returns rotation of playspace as Rotator.<br>
+* **XR|SetBaseRotation** - Sets new rotation of playspace.<br>
+* **XR|GetBaseRotationAndPosition** - Returns rotation and center of playspace as Transform.<br>
+* **XR|SetBaseRotationAndPosition** - Sets new rotation and center of playspace.<br>
+* **XR|ResetOrientationAndPositionZ** - Reorients playspace. *(useful for re-centering playspace without adjusting floor Z)*<br>
 * **XR|GetSpectatorScreenTexture** - Gets the spectator screen texture.<br>
 * **System Info|RHIAdapterName** - Returns name of installed GPU. *(useful for automatically configuring settings)*<br>
 * **System Info|RHIVendorName** - Returns vendor of installed GPU.<br>
