@@ -20,6 +20,7 @@ A simple plugin for Unreal Engine 4 which adds a few basic blueprint functions.
 * **GetTextFromFile** - Reads a .txt file and returns contents as a string. *(useful for including update notes in game)*<br>
 * **PrintToLog** - Prints string to log file in packaged builds. *(logs must be enabled for this to work in shipping builds)*<br>
 * **UnloadStreamingLevel** - Unloads and removes streaming level.<br>
+* **GetCustomDataValue** - Gets the value of Custom Data from instanced static mesh component. *(logic per instance!)*<br>
 * **XR|GetBasePosition** - Returns center of playspace as Vector.<br>
 * **XR|SetBasePosition** - Sets new center of playspace.<br>
 * **XR|GetBaseRotation** - Returns rotation of playspace as Rotator.<br>
