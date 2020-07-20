@@ -23,7 +23,7 @@
 #include "Runtime/RHI/Public/RHIDefinitions.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/LevelStreamingDynamic.h"
-//#include "GenericPlatform/GenericPlatform.h"
+#include "Components/InstancedStaticMeshComponent.h"
 
 UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -211,5 +211,21 @@ void UInnerLoopFunctionLibrary::UnloadStreamingLevel(ULevelStreamingDynamic* Lev
 		LevelInstance->SetShouldBeLoaded(false);
 		LevelInstance->SetShouldBeVisible(false);
 		LevelInstance->SetIsRequestingUnloadAndRemoval(true);
+	}
+}
+
+// Expose Per Instance Custom Data as float for use in logic (>=4.25 only!)
+float UInnerLoopFunctionLibrary::GetCustomDataValue(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, int32 CustomDataIndex)
+{
+	if (InstancedStaticMeshComponent->PerInstanceSMData.IsValidIndex(InstanceIndex))
+	{
+
+		float CustomDataValue = InstancedStaticMeshComponent->PerInstanceSMCustomData[InstanceIndex * InstancedStaticMeshComponent->NumCustomDataFloats + CustomDataIndex];
+
+		return CustomDataValue;
+	}
+	else
+	{
+		return 0.0f;
 	}
 }

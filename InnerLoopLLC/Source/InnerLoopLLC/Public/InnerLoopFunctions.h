@@ -90,4 +90,7 @@ public:
 
 	UFUNCTION(Category = "InnerLoop LLC", BlueprintCallable, Meta = (keywords = "remove"))
 		static void UnloadStreamingLevel(ULevelStreamingDynamic* LevelInstance);
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|Components")
+		static float GetCustomDataValue(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, int32 CustomDataIndex);
 };
