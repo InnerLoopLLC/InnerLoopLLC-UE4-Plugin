@@ -217,15 +217,16 @@ void UInnerLoopFunctionLibrary::UnloadStreamingLevel(ULevelStreamingDynamic* Lev
 // Expose Per Instance Custom Data as float for use in logic (>=4.25 only!)
 float UInnerLoopFunctionLibrary::GetCustomDataValue(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, int32 CustomDataIndex)
 {
+	float CustomDataValue = 0.0f;
+
+#if ENGINE_MINOR_VERSION >= 25
+	
 	if (InstancedStaticMeshComponent->PerInstanceSMData.IsValidIndex(InstanceIndex))
 	{
-
-		float CustomDataValue = InstancedStaticMeshComponent->PerInstanceSMCustomData[InstanceIndex * InstancedStaticMeshComponent->NumCustomDataFloats + CustomDataIndex];
-
-		return CustomDataValue;
+		CustomDataValue = InstancedStaticMeshComponent->PerInstanceSMCustomData[InstanceIndex * InstancedStaticMeshComponent->NumCustomDataFloats + CustomDataIndex];
 	}
-	else
-	{
-		return 0.0f;
-	}
+	
+#endif
+
+	return CustomDataValue;
 }
