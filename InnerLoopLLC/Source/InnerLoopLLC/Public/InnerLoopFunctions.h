@@ -13,7 +13,7 @@
 
 
 UENUM(BlueprintType)
-enum class EBoolBranches : uint8 
+enum class EBoolBranch : uint8 
 {
 	_True,
 	_False
@@ -28,11 +28,14 @@ class INNERLOOPLLC_API UInnerLoopFunctionLibrary : public UBlueprintFunctionLibr
 
 public:
 
+	// --------------------
+	// General functions
+	// --------------------
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static bool WithEditor();
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC", Meta = (ExpandEnumAsExecs = Branch))
-		static void IsWithEditor(EBoolBranches& Branch);
+		static void IsWithEditor(EBoolBranch& Branch);
 
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetProjectVersion();
@@ -40,6 +43,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
 		static void SetProjectVersion(FString version);
 
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
+		static FString GetTextFromFile(FString File = "");
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
+		static void PrintToLog(const FString& InPrefix, const FString& InString);
+	
+	// --------------------
+	// XR functions
+	// --------------------
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
 		static FVector GetBasePosition();
 
@@ -56,7 +68,7 @@ public:
 		static FTransform GetBaseRotationAndPosition();
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
-		static void SetBaseRotationAndPosition(FVector Position, FRotator Rotation);
+		static void SetBaseRotationAndPosition(FTransform Transform);
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ);
@@ -64,9 +76,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
 		static UTexture* GetSpectatorScreenTexture();
 
-	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
-		static FString GetTextFromFile(FString File = "");
-	
+	// --------------------
+	// System Info
+	// --------------------	
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIAdapterName();
 
@@ -85,12 +97,12 @@ public:
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FString CPUVendor();
 
-	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
-		static void PrintToLog(const FString& InPrefix, const FString& InString);
-
-	UFUNCTION(Category = "InnerLoop LLC", BlueprintCallable, Meta = (keywords = "remove"))
+	// --------------------
+	// Misc
+	// --------------------
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|Misc", Meta = (keywords = "remove"))
 		static void UnloadStreamingLevel(ULevelStreamingDynamic* LevelInstance);
 
-	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|Components")
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|Misc")
 		static float GetCustomDataValue(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, int32 CustomDataIndex);
 };

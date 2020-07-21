@@ -6,29 +6,34 @@
 #include "CoreGlobals.h"
 #include "CoreMinimal.h"
 
-#include "HeadMountedDisplayFunctionLibrary.h"
 #include "EngineGlobals.h"
 #include "Engine/Engine.h"
-#include "GameFramework/WorldSettings.h"
-#include "IHeadMountedDisplay.h"
-#include "IXRTrackingSystem.h"
-#include "ISpectatorScreenController.h"
-#include "IXRSystemAssets.h"
-#include "Components/PrimitiveComponent.h"
+#include "Engine/LevelStreamingDynamic.h"
 #include "Features/IModularFeatures.h"
+#include "GameFramework/WorldSettings.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
+#include "IHeadMountedDisplay.h"
+#include "ISpectatorScreenController.h"
+#include "IXRTrackingSystem.h"
+#include "IXRSystemAssets.h"
 #include "XRMotionControllerBase.h"
 #include "XRTrackingSystemBase.h"
+#include "Components/PrimitiveComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
 #include "Misc/FileHelper.h"
 #include "Runtime/RHI/Public/RHI.h"
 #include "Runtime/RHI/Public/RHIDefinitions.h"
 #include "Kismet/GameplayStatics.h"
-#include "Engine/LevelStreamingDynamic.h"
-#include "Components/InstancedStaticMeshComponent.h"
+
 
 UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 }
+
+// --------------------
+// General functions
+// --------------------
 
 bool UInnerLoopFunctionLibrary::WithEditor()
 {
@@ -41,15 +46,15 @@ bool UInnerLoopFunctionLibrary::WithEditor()
 	return false;
 }
 
-void UInnerLoopFunctionLibrary::IsWithEditor(EBoolBranches& Branch)
+void UInnerLoopFunctionLibrary::IsWithEditor(EBoolBranch& Branch)
 {
 #if WITH_EDITOR
 
-	Branch = EBoolBranches::_True;
+	Branch = EBoolBranch::_True;
 
 #else
 
-	Branch = EBoolBranches::_False;
+	Branch = EBoolBranch::_False;
 
 #endif //WITH_EDITOR
 }
@@ -68,6 +73,27 @@ void UInnerLoopFunctionLibrary::SetProjectVersion(FString Version)
 	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *Version, GGameIni);
 }
 
+FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
+{
+	FString FileData = "";
+
+	FFileHelper::LoadFileToString(FileData, *File);
+
+	return FileData;
+}
+
+void UInnerLoopFunctionLibrary::PrintToLog(const FString& InPrefix, const FString& InString)
+{
+
+	FString Prefix = "InnerLoop Log: ";
+	FString FinalString = Prefix + *InPrefix + *InString;
+
+	UE_LOG(LogBlueprintUserMessages, Log, TEXT("%s"), *FinalString);
+}
+
+// --------------------
+// XR functions
+// --------------------
 FVector UInnerLoopFunctionLibrary::GetBasePosition()
 {
 	FVector BasePosition = GEngine->XRSystem->GetBasePosition();
@@ -106,8 +132,11 @@ FTransform UInnerLoopFunctionLibrary::GetBaseRotationAndPosition()
 	return FTransform(BaseRotation, BasePosition);
 }
 
-void UInnerLoopFunctionLibrary::SetBaseRotationAndPosition(FVector Position, FRotator Rotation)
+void UInnerLoopFunctionLibrary::SetBaseRotationAndPosition(FTransform Transform)
 {
+	FRotator Rotation = Transform.Rotator();
+	FVector Position = Transform.GetLocation();
+
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
 	{
 		GEngine->XRSystem->SetBaseRotation(Rotation);
@@ -156,15 +185,9 @@ UTexture* UInnerLoopFunctionLibrary::GetSpectatorScreenTexture()
 	return nullptr;
 }
 
-FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
-{
-	FString FileData = "";
-	
-	FFileHelper::LoadFileToString(FileData, *File);
-
-	return FileData;
-}
-
+// --------------------
+// System Info
+// --------------------
 FName UInnerLoopFunctionLibrary::RHIAdapterName()
 {
 	return FName(*GRHIAdapterName);
@@ -195,15 +218,9 @@ FString UInnerLoopFunctionLibrary::CPUVendor()
 	return FGenericPlatformMisc::GetCPUVendor();
 }
 
-void UInnerLoopFunctionLibrary::PrintToLog(const FString& InPrefix, const FString& InString)
-{
-	
-	FString Prefix = "InnerLoop Log: ";
-	FString FinalString = Prefix + *InPrefix + *InString;
-	
-	UE_LOG(LogBlueprintUserMessages, Log, TEXT("%s"), *FinalString);
-}
-
+// --------------------
+// Misc
+// --------------------
 void UInnerLoopFunctionLibrary::UnloadStreamingLevel(ULevelStreamingDynamic* LevelInstance)
 {
 	if (LevelInstance)
