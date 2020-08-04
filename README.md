@@ -3,8 +3,8 @@
 A simple plugin for Unreal Engine 4 which adds a few basic blueprint functions.
 
 ## Support
-*(only tested for these platforms, but probably works on any engine version >=4.23)*
-* **Unreal Engine** - [4.25.1-Oculus](https://github.com/Oculus-VR/UnrealEngine)
+*(only tested for this stuff, but probably works on other engine versions)*
+* **Unreal Engine** - [4.25.3-Oculus](https://github.com/Oculus-VR/UnrealEngine)
 * **Platforms** - Win64, Android, PS4
 
 ## Installation
