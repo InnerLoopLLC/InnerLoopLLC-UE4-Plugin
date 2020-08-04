@@ -25,6 +25,9 @@
 #include "Runtime/RHI/Public/RHIDefinitions.h"
 #include "Kismet/GameplayStatics.h"
 
+#if PLATFORM_ANDROID
+#include "Android/AndroidPlatformMisc.h"
+#endif
 
 UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -205,17 +208,46 @@ FName UInnerLoopFunctionLibrary::RHIShaderFormatName()
 
 FString UInnerLoopFunctionLibrary::CPUBrand()
 {
-	return FGenericPlatformMisc::GetCPUBrand();
+#if PLATFORM_WINDOWS
+		return FWindowsPlatformMisc::GetCPUBrand();
+#endif
+#if PLATFORM_ANDROID
+		return FAndroidMisc::GetCPUBrand();
+#endif
+#if PLATFORM_PS4
+		//this is a pointless stub since we don't care what CPU the PS4 has
+		return "PS4 CPU";
+#endif
 }
 
 FString UInnerLoopFunctionLibrary::CPUChipset()
 {
-	return FGenericPlatformMisc::GetCPUChipset();
+#if PLATFORM_WINDOWS
+	return FWindowsPlatformMisc::GetCPUChipset();
+#endif
+#if PLATFORM_ANDROID
+	return 	FAndroidMisc::GetCPUChipset();
+#endif
+#if PLATFORM_PS4
+	//this is a pointless stub since we don't care what CPU the PS4 has
+	return "PS4 CPU";
+#endif
+
+	
 }
 
 FString UInnerLoopFunctionLibrary::CPUVendor()
 {
-	return FGenericPlatformMisc::GetCPUVendor();
+#if PLATFORM_WINDOWS
+	return FWindowsPlatformMisc::GetCPUVendor();
+#endif
+#if PLATFORM_ANDROID
+	return FAndroidMisc::GetCPUVendor();
+#endif
+#if PLATFORM_PS4
+	//this is a pointless stub since we don't care what CPU the PS4 has
+	return "PS4 CPU";
+#endif
 }
 
 // --------------------
@@ -231,9 +263,10 @@ void UInnerLoopFunctionLibrary::UnloadStreamingLevel(ULevelStreamingDynamic* Lev
 	}
 }
 
-// Expose Per Instance Custom Data as float for use in logic (>=4.25 only!)
 float UInnerLoopFunctionLibrary::GetCustomDataValue(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, int32 CustomDataIndex)
 {
+	// Expose Per Instance Custom Data as float (>=4.25 only!)
+	
 	float CustomDataValue = 0.0f;
 
 #if ENGINE_MINOR_VERSION >= 25
