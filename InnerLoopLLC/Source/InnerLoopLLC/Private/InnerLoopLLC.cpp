@@ -1,11 +1,8 @@
-// Copyright 2019 InnerLoop LLC. All Rights Reserved.
+// Copyright 2020 InnerLoop LLC. All Rights Reserved.
 
 #include "InnerLoopLLC.h"
 
-#include "CoreMinimal.h"
-#include "Modules/ModuleManager.h"
-
-class FInnerLoopLLC : public IInnerLoopLLC
+class FInnerLoopLLC : public InnerLoopLLC
 {
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;

@@ -1,14 +1,46 @@
-// Copyright 2019 InnerLoop LLC. All Rights Reserved.
+// Copyright 2020 InnerLoop LLC. All Rights Reserved.
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "Kismet/BlueprintFunctionLibrary.h"
 #include "UObject/ObjectMacros.h"
-#include "HeadMountedDisplayTypes.h"
-#include "IIdentifiableXRDevice.h" // for FXRDeviceId
+#include "CoreGlobals.h"
+#include "CoreMinimal.h"
+#include "EngineGlobals.h"
+#include "Engine/Engine.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
+#include "Kismet/GameplayStatics.h"
+
+#include "InnerLoopLLC.h"
+
+#include "IIdentifiableXRDevice.h"
 #include "Engine/LevelStreaming.h"
 #include "Engine/LevelStreamingDynamic.h"
+#include "Features/IModularFeatures.h"
+#include "GameFramework/WorldSettings.h"
+
+#include "HeadMountedDisplayTypes.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
+#include "IHeadMountedDisplay.h"
+
+#include "ISpectatorScreenController.h"
+
+#include "IXRTrackingSystem.h"
+#include "IXRSystemAssets.h"
+#include "XRMotionControllerBase.h"
+#include "XRTrackingSystemBase.h"
+
+#include "Components/PrimitiveComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
+
+#include "Misc/FileHelper.h"
+
+#include "Runtime/RHI/Public/RHI.h"
+#include "Runtime/RHI/Public/RHIDefinitions.h"
+
+#if PLATFORM_ANDROID
+#include "Android/AndroidPlatformMisc.h"
+#endif
+
 #include "InnerLoopFunctions.generated.h"
 
 

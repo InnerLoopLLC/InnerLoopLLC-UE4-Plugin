@@ -1,33 +1,6 @@
-// Copyright 2019 InnerLoop LLC. All Rights Reserved.
+// Copyright 2020 InnerLoop LLC. All Rights Reserved.
 
 #include "InnerLoopFunctions.h"
-#include "InnerLoopLLC.h"
-
-#include "CoreGlobals.h"
-#include "CoreMinimal.h"
-
-#include "EngineGlobals.h"
-#include "Engine/Engine.h"
-#include "Engine/LevelStreamingDynamic.h"
-#include "Features/IModularFeatures.h"
-#include "GameFramework/WorldSettings.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
-#include "IHeadMountedDisplay.h"
-#include "ISpectatorScreenController.h"
-#include "IXRTrackingSystem.h"
-#include "IXRSystemAssets.h"
-#include "XRMotionControllerBase.h"
-#include "XRTrackingSystemBase.h"
-#include "Components/PrimitiveComponent.h"
-#include "Components/InstancedStaticMeshComponent.h"
-#include "Misc/FileHelper.h"
-#include "Runtime/RHI/Public/RHI.h"
-#include "Runtime/RHI/Public/RHIDefinitions.h"
-#include "Kismet/GameplayStatics.h"
-
-#if PLATFORM_ANDROID
-#include "Android/AndroidPlatformMisc.h"
-#endif
 
 UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -232,8 +205,6 @@ FString UInnerLoopFunctionLibrary::CPUChipset()
 	//this is a pointless stub since we don't care what CPU the PS4 has
 	return "PS4 CPU";
 #endif
-
-	
 }
 
 FString UInnerLoopFunctionLibrary::CPUVendor()
