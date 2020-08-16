@@ -2,6 +2,9 @@
 
 #pragma once
 
+#include "InnerLoopLLC.h"
+
+// Essentials
 #include "UObject/ObjectMacros.h"
 #include "CoreGlobals.h"
 #include "CoreMinimal.h"
@@ -10,33 +13,33 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
 
-#include "InnerLoopLLC.h"
-
-#include "IIdentifiableXRDevice.h"
-#include "Engine/LevelStreaming.h"
-#include "Engine/LevelStreamingDynamic.h"
+// General 
 #include "Features/IModularFeatures.h"
 #include "GameFramework/WorldSettings.h"
+#include "Misc/FileHelper.h"
 
+// System Info
+#include "Runtime/RHI/Public/RHI.h"
+#include "Runtime/RHI/Public/RHIDefinitions.h"
+
+// Misc
+#include "Engine/LevelStreaming.h"
+#include "Engine/LevelStreamingDynamic.h"
+#include "Components/PrimitiveComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
+
+// XR
 #include "HeadMountedDisplayTypes.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "IHeadMountedDisplay.h"
-
-#include "ISpectatorScreenController.h"
-
+#include "IIdentifiableXRDevice.h"
 #include "IXRTrackingSystem.h"
 #include "IXRSystemAssets.h"
 #include "XRMotionControllerBase.h"
 #include "XRTrackingSystemBase.h"
+#include "ISpectatorScreenController.h"
 
-#include "Components/PrimitiveComponent.h"
-#include "Components/InstancedStaticMeshComponent.h"
-
-#include "Misc/FileHelper.h"
-
-#include "Runtime/RHI/Public/RHI.h"
-#include "Runtime/RHI/Public/RHIDefinitions.h"
-
+// Android Platform
 #if PLATFORM_ANDROID
 #include "Android/AndroidPlatformMisc.h"
 #endif
@@ -79,7 +82,7 @@ public:
 		static FString GetTextFromFile(FString File = "");
 
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
-		static void PrintToLog(const FString& InPrefix, const FString& InString);
+		static void PrintToLog(const FString Prefix, const FString String);
 	
 	// --------------------
 	// XR functions

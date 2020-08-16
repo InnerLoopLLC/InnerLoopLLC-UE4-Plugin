@@ -58,13 +58,10 @@ FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
 	return FileData;
 }
 
-void UInnerLoopFunctionLibrary::PrintToLog(const FString& InPrefix, const FString& InString)
+void UInnerLoopFunctionLibrary::PrintToLog(const FString Prefix, const FString String)
 {
-
-	FString Prefix = "InnerLoop Log: ";
-	FString FinalString = Prefix + *InPrefix + *InString;
-
-	UE_LOG(LogBlueprintUserMessages, Log, TEXT("%s"), *FinalString);
+	FString FinalString = Prefix + String;
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FinalString);
 }
 
 // --------------------

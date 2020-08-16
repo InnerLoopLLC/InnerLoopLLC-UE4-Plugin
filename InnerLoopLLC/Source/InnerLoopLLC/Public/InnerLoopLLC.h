@@ -4,6 +4,8 @@
 
 #include "Modules/ModuleManager.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogInnerLoopLLC, Log, All);
+
 class InnerLoopLLC : public IModuleInterface
 {
 public:

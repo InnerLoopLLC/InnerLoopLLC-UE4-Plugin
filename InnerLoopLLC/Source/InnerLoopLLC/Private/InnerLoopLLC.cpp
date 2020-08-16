@@ -2,6 +2,8 @@
 
 #include "InnerLoopLLC.h"
 
+DEFINE_LOG_CATEGORY(LogInnerLoopLLC);
+
 class FInnerLoopLLC : public InnerLoopLLC
 {
 	/** IModuleInterface implementation */
