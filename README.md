@@ -14,7 +14,7 @@ A simple plugin for Unreal Engine 4 which adds a few basic blueprint functions.
 
 ## Functions
 * **IsWithEditor** - Returns Bool if project is running in UE4 editor or not.<br>
-* **WithEditor** - Same as WithEditor, but with branched outputs. *(useful for skipping cinematics/etc while developing)*<br>
+* **WithEditor** - Same as IsWithEditor, but with branched outputs. *(useful for skipping cinematics/etc while developing)*<br>
 * **GetProjectVersion** - Returns Project Version as set in Project Description.<br>
 * **SetProjectVersion** - Sets the Project Version.<br>
 * **GetTextFromFile** - Reads a .txt file and returns contents as a string. *(useful for including update notes in game)*<br>
