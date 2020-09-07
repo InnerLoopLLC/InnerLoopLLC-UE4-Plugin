@@ -46,7 +46,7 @@
 
 #include "InnerLoopFunctions.generated.h"
 
-
+// Used only for True and False exec pins. Not intended to be used for anything else.
 UENUM(BlueprintType)
 enum class EBoolBranch : uint8 
 {
@@ -66,78 +66,105 @@ public:
 	// --------------------
 	// General functions
 	// --------------------
+
+	// Returns Bool if project is running with UE4 editor or not.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
-		static bool WithEditor();
+		static bool IsWithEditor();
 
+	// Fires exec pins if project is running with UE4 editor or not. Useful for skipping cinematics/etc while developing.
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC", Meta = (ExpandEnumAsExecs = Branch))
-		static void IsWithEditor(EBoolBranch& Branch);
+		static void WithEditor(EBoolBranch& Branch);
 
+	// Returns Project Version as set in Project Description.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetProjectVersion();
 
+	// Sets the Project Version. Useful for marking daily builds, etc. Recommended to only use if WithEditor.
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
 		static void SetProjectVersion(FString version);
 
+	// Reads a.txt file and returns contents as a string. Useful for things like including update notes in game.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetTextFromFile(FString File = "");
 
+	/* Prints string to log file. Logs must be enabled for this to work in shipping builds. See this forum post in order to do that: 
+	https://forums.unrealengine.com/development-discussion/c-gameplay-programming/1614392-how-to-add-buselogginginshipping-to-my-project#post1614965 */
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
 		static void PrintToLog(const FString Prefix, const FString String);
 	
 	// --------------------
 	// XR functions
 	// --------------------
+
+	// Returns center of playspace as Vector.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
 		static FVector GetBasePosition();
 
+	// Sets new center of playspace.
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void SetBasePosition(FVector Position);
 
+	// Returns rotation of playspace as Rotator.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
 		static FRotator GetBaseRotation();
 
+	// Sets new rotation of playspace.
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void SetBaseRotation(FRotator Rotation);
 
+	// Returns rotation and center of playspace as Transform. Scale is ignored.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
 		static FTransform GetBaseRotationAndPosition();
 
+	// Sets new rotation and center of playspace. Scale is ignored.
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void SetBaseRotationAndPosition(FTransform Transform);
 
+	// Reorients playspace without adjusting Z. Useful for maintaining floor height.
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|XR")
 		static void ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ);
 
+	// Gets the currently set spectator screen texture.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|XR")
 		static UTexture* GetSpectatorScreenTexture();
 
 	// --------------------
 	// System Info
 	// --------------------	
+
+	// Returns name of installed GPU. Useful for automatically configuring settings based on GPU.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIAdapterName();
 
+	// Returns vendor name of installed GPU.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIVendorName();
 
+	// Returns name of the current shader format. (e.g. "PCD3D_ES3_1", etc)
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FName RHIShaderFormatName();
 
+	// Returns as string the brand of installed CPU.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FString CPUBrand();
 
+	// Returns as string the chipset of installed CPU.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FString CPUChipset();
 
+	// Returns as string the vendor of installed CPU.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 		static FString CPUVendor();
 
 	// --------------------
 	// Misc
 	// --------------------
+	
+	// Unloads and removes streaming level.
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|Misc", Meta = (keywords = "remove"))
 		static void UnloadStreamingLevel(ULevelStreamingDynamic* LevelInstance);
 
+	// Gets the value of Custom Data from Instanced Static Mesh Component.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|Misc")
 		static float GetCustomDataValue(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, int32 CustomDataIndex);
 };

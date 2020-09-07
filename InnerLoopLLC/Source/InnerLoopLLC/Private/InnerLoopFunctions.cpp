@@ -11,7 +11,7 @@ UInnerLoopFunctionLibrary::UInnerLoopFunctionLibrary(const FObjectInitializer& O
 // General functions
 // --------------------
 
-bool UInnerLoopFunctionLibrary::WithEditor()
+bool UInnerLoopFunctionLibrary::IsWithEditor()
 {
 #if WITH_EDITOR
 
@@ -22,7 +22,7 @@ bool UInnerLoopFunctionLibrary::WithEditor()
 	return false;
 }
 
-void UInnerLoopFunctionLibrary::IsWithEditor(EBoolBranch& Branch)
+void UInnerLoopFunctionLibrary::WithEditor(EBoolBranch& Branch)
 {
 #if WITH_EDITOR
 
@@ -67,6 +67,7 @@ void UInnerLoopFunctionLibrary::PrintToLog(const FString Prefix, const FString S
 // --------------------
 // XR functions
 // --------------------
+
 FVector UInnerLoopFunctionLibrary::GetBasePosition()
 {
 	FVector BasePosition = GEngine->XRSystem->GetBasePosition();
@@ -117,7 +118,7 @@ void UInnerLoopFunctionLibrary::SetBaseRotationAndPosition(FTransform Transform)
 	}
 }
 
-void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool KeepZ)
+void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool bKeepZ)
 {
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
 	{
@@ -135,7 +136,7 @@ void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(float Yaw, EOrientP
 			GEngine->XRSystem->ResetOrientationAndPosition(Yaw);
 		}
 
-		if (KeepZ == true)
+		if (bKeepZ == true)
 		{
 			FVector BasePosition = GEngine->XRSystem->GetBasePosition();
 
@@ -161,6 +162,7 @@ UTexture* UInnerLoopFunctionLibrary::GetSpectatorScreenTexture()
 // --------------------
 // System Info
 // --------------------
+
 FName UInnerLoopFunctionLibrary::RHIAdapterName()
 {
 	return FName(*GRHIAdapterName);
@@ -221,6 +223,7 @@ FString UInnerLoopFunctionLibrary::CPUVendor()
 // --------------------
 // Misc
 // --------------------
+
 void UInnerLoopFunctionLibrary::UnloadStreamingLevel(ULevelStreamingDynamic* LevelInstance)
 {
 	if (LevelInstance)
