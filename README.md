@@ -2,6 +2,9 @@
 
 A simple plugin for Unreal Engine 4 which adds a few basic blueprint nodes.
 
+*If you enjoy this plugin and want to see it improve, please consider helping me buy some caffeine.<br>
+[**Donate via Patreon**](https://www.patreon.com/innerloopllc)*
+
 #### What this is:
 + ...my first attempt at making a plugin for UE4.
 + ...a great way for me to learn and practice my C++ skills.
