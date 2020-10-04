@@ -6,9 +6,9 @@ A simple plugin for Unreal Engine 4 which adds a few basic blueprint nodes.
 [**Donate via Patreon**](https://www.patreon.com/innerloopllc)*
 
 #### What this is:
++ ...a collection of nodes that solve very specialized problems, particularly related to XR development challenges.
 + ...my first attempt at making a plugin for UE4.
 + ...a great way for me to learn and practice my C++ skills.
-+ ...a collection of nodes that solve very specialized problems, particularly related to XR development challenges.
 
 #### What this isn't:
 + ...relevant or useful for most developers, especially those not working in XR.
@@ -23,6 +23,9 @@ Find out more about InnerLoop LLC at [https://www.innerloopllc.com](https://www.
 *(only tested for this stuff, but probably works on other engine versions)*
 * **Unreal Engine** - [4.25.3-Oculus](https://github.com/Oculus-VR/UnrealEngine)
 * **Platforms** - Win64, Android, PS4
+
+*(not tested for functionality, only to make sure it compiles)*
+* **Unreal Engine** - 4.24, 4.23, 4.22, 4.21
 
 ## Installation
 1) Place the *'InnerLoopLLC'* folder in *'Engine/Plugins/Marketplace'*<br>
