@@ -13,5 +13,4 @@ Saved
 *.xcodeproj
 *.xcworkspace
 *.uproject
-README.md
-LICENSE
+*.md
