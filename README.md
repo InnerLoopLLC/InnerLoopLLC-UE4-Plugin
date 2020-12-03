@@ -38,6 +38,8 @@ Find out more about InnerLoop LLC at [https://www.innerloopllc.com](https://www.
 * **GetProjectVersion** - Returns Project Version as set in Project Description.<br>
 * **SetProjectVersion** - Sets the Project Version.<br>
 * **GetTextFromFile** - Reads a .txt file and returns contents as a string. *(useful for including update notes in game)*<br>
+* **GetLogVerbosity** - Gets InnerLoop logging verbosity*<br>
+* **SetLogVerbosity** - Sets InnerLoop logging verbosity*<br>
 * **PrintToLog** - Prints string to log file in packaged builds. *(logs must be enabled for this to work in shipping builds)*<br>
 * **Misc|UnloadStreamingLevel** - Unloads and removes streaming level.<br>
 * **Misc|GetCustomDataValue** - Gets the value of Custom Data from instanced static mesh component. *(requires 4.25+)*<br>

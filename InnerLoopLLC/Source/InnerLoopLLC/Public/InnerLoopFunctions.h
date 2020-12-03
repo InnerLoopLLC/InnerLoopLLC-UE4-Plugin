@@ -54,6 +54,13 @@ enum class EBoolBranch : uint8
 	_False
 };
 
+UENUM(BlueprintType)
+enum class ELogVerbosityBP : uint8
+{
+	Log,
+	Warning,
+	Error
+};
 
 UCLASS()
 class INNERLOOPLLC_API UInnerLoopFunctionLibrary : public UBlueprintFunctionLibrary
@@ -87,10 +94,18 @@ public:
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
 		static FString GetTextFromFile(FString File = "");
 
+	/* Gets Logging Verbosity */
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
+		static ELogVerbosityBP GetLogVerbosity();
+
+	/* Sets Logging Verbosity */
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
+		static void SetLogVerbosity(const ELogVerbosityBP Verbosity);
+
 	/* Prints string to log file. Logs must be enabled for this to work in shipping builds. See this forum post in order to do that: 
 	https://forums.unrealengine.com/development-discussion/c-gameplay-programming/1614392-how-to-add-buselogginginshipping-to-my-project#post1614965 */
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
-		static void PrintToLog(const FString Prefix, const FString String);
+		static void PrintToLog(const ELogVerbosityBP Verbosity, const FString Prefix, const FString String, bool bPrintToScreen = false, float Duration = 2.f);
 	
 	// --------------------
 	// XR functions
