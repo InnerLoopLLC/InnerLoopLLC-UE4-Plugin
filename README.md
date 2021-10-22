@@ -2,8 +2,8 @@
 
 A simple plugin for Unreal Engine 4 which adds a few basic blueprint nodes.
 
-*If you enjoy this plugin and want to see it improve, please consider helping me buy some caffeine.<br>
-[**Donate via Patreon**](https://www.patreon.com/innerloopllc)*
+*If you enjoy this plugin, please consider helping me buy some caffeine.* 
+[**Donate via PayPal**](https://paypal.me/bhicks85)
 
 #### What this is:
 + ...a collection of nodes that solve very specialized problems, particularly related to XR development challenges.
@@ -21,11 +21,11 @@ Find out more about InnerLoop LLC at [https://www.innerloopllc.com](https://www.
 
 ## Support
 *(only tested for this stuff, but probably works on other engine versions)*
-* **Unreal Engine** - [4.25.3-Oculus](https://github.com/Oculus-VR/UnrealEngine)
+* **Unreal Engine** - [4.27.1-Oculus](https://github.com/Oculus-VR/UnrealEngine)
 * **Platforms** - Win64, Android, PS4
 
 *(not tested for functionality, only to make sure it compiles)*
-* **Unreal Engine** - 4.24, 4.23, 4.22, 4.21
+* **Unreal Engine** - 4.27, 4.26, 4.25, 4.24, 4.23, 4.22, 4.21
 
 ## Installation
 1) Place the *'InnerLoopLLC'* folder in *'Engine/Plugins/Marketplace'*<br>
@@ -38,7 +38,11 @@ Find out more about InnerLoop LLC at [https://www.innerloopllc.com](https://www.
 * **GetProjectVersion** - Returns Project Version as set in Project Description.<br>
 * **SetProjectVersion** - Sets the Project Version.<br>
 * **GetTextFromFile** - Reads a .txt file and returns contents as a string. *(useful for including update notes in game)*<br>
+* **GetLogVerbosity** - Gets InnerLoop logging verbosity*<br>
+* **SetLogVerbosity** - Sets InnerLoop logging verbosity*<br>
 * **PrintToLog** - Prints string to log file in packaged builds. *(logs must be enabled for this to work in shipping builds)*<br>
+* **FromUnixTimestamp** - Returns the date from Unix time (seconds from midnight 1970-01-01)*<br>
+* **ToUnixTimestamp** - Returns this date as the number of seconds since the Unix Epoch (January 1st of 1970).*<br>
 * **Misc|UnloadStreamingLevel** - Unloads and removes streaming level.<br>
 * **Misc|GetCustomDataValue** - Gets the value of Custom Data from instanced static mesh component. *(requires 4.25+)*<br>
 * **XR|GetBasePosition** - Returns center of playspace as Vector.<br>
