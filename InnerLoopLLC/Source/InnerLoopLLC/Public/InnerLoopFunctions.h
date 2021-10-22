@@ -106,6 +106,15 @@ public:
 	https://forums.unrealengine.com/development-discussion/c-gameplay-programming/1614392-how-to-add-buselogginginshipping-to-my-project#post1614965 */
 	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC")
 		static void PrintToLog(const ELogVerbosityBP Verbosity, const FString Prefix, const FString String, bool bPrintToScreen = false, float Duration = 2.f);
+
+	// Returns the date from Unix time (seconds from midnight 1970-01-01)
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
+		static FDateTime FromUnixTimestamp(const int64 UnixTimestamp);
+
+	// Returns this date as the number of seconds since the Unix Epoch (January 1st of 1970).
+	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC")
+		static int64 ToUnixTimestamp(const FDateTime DateTime);
+
 	
 	// --------------------
 	// XR functions

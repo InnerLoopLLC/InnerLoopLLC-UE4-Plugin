@@ -130,6 +130,16 @@ void UInnerLoopFunctionLibrary::PrintToLog(const ELogVerbosityBP Verbosity, cons
 	}
 }
 
+FDateTime UInnerLoopFunctionLibrary::FromUnixTimestamp(const int64 UnixTimestamp)
+{
+	return FDateTime::FromUnixTimestamp(UnixTimestamp);
+}
+
+int64 UInnerLoopFunctionLibrary::ToUnixTimestamp(const FDateTime DateTime)
+{
+	return DateTime.FDateTime::ToUnixTimestamp();
+}
+
 // --------------------
 // XR functions
 // --------------------
