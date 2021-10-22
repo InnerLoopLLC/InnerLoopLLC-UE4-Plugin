@@ -58,10 +58,86 @@ FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
 	return FileData;
 }
 
-void UInnerLoopFunctionLibrary::PrintToLog(const FString Prefix, const FString String)
+ELogVerbosityBP UInnerLoopFunctionLibrary::GetLogVerbosity()
+{
+	ELogVerbosity::Type LogVerbosity = UE_GET_LOG_VERBOSITY(LogInnerLoopLLC);
+	switch (LogVerbosity)
+	{
+	case ELogVerbosity::Log:
+		return ELogVerbosityBP::Log;
+	case ELogVerbosity::Warning:
+		return ELogVerbosityBP::Warning;
+	case ELogVerbosity::Error:
+		return ELogVerbosityBP::Error;
+	// Other log types will return Log, but they shouldn't be possible since everything we're setting is covered above
+	default:
+		return ELogVerbosityBP::Log;
+	}
+}
+
+void UInnerLoopFunctionLibrary::SetLogVerbosity(const ELogVerbosityBP Verbosity)
+{
+	switch (Verbosity)
+	{
+	case ELogVerbosityBP::Log:
+		UE_SET_LOG_VERBOSITY(LogInnerLoopLLC, Log);
+		break;
+	case ELogVerbosityBP::Warning:
+		UE_SET_LOG_VERBOSITY(LogInnerLoopLLC, Warning);
+		break;
+	case ELogVerbosityBP::Error:
+		UE_SET_LOG_VERBOSITY(LogInnerLoopLLC, Error);
+		break;
+	default:
+		UE_SET_LOG_VERBOSITY(LogInnerLoopLLC, Log);
+		break;
+	}
+}
+
+void UInnerLoopFunctionLibrary::PrintToLog(const ELogVerbosityBP Verbosity, const FString Prefix, const FString String, bool bPrintToScreen, float Duration)
 {
 	FString FinalString = Prefix + String;
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FinalString);
+	switch (Verbosity)
+	{
+	case ELogVerbosityBP::Log:
+		UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FinalString);
+		break;
+	case ELogVerbosityBP::Warning:
+		UE_LOG(LogInnerLoopLLC, Warning, TEXT("%s"), *FinalString);
+		break;
+	case ELogVerbosityBP::Error:
+		UE_LOG(LogInnerLoopLLC, Error, TEXT("%s"), *FinalString);
+		break;
+	default:
+		UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FinalString);
+		break;
+	}
+
+	if (bPrintToScreen)
+	{
+		if (GAreScreenMessagesEnabled)
+		{
+			if (GConfig && Duration < 0)
+			{
+				GConfig->GetFloat(TEXT("Kismet"), TEXT("PrintStringDuration"), Duration, GEngineIni);
+			}
+			GEngine->AddOnScreenDebugMessage((uint64)-1, Duration, FLinearColor(0.0, 0.66, 1.0).ToFColor(true), FinalString);
+		}
+		else
+		{
+			UE_LOG(LogBlueprint, VeryVerbose, TEXT("Screen messages disabled (!GAreScreenMessagesEnabled).  Cannot print to screen."));
+		}
+	}
+}
+
+FDateTime UInnerLoopFunctionLibrary::FromUnixTimestamp(const int64 UnixTimestamp)
+{
+	return FDateTime::FromUnixTimestamp(UnixTimestamp);
+}
+
+int64 UInnerLoopFunctionLibrary::ToUnixTimestamp(const FDateTime DateTime)
+{
+	return DateTime.FDateTime::ToUnixTimestamp();
 }
 
 // --------------------
