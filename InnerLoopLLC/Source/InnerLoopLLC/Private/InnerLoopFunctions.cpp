@@ -17,9 +17,11 @@ bool UInnerLoopFunctionLibrary::IsWithEditor()
 
 	return true;
 
-#endif //WITH_EDITOR
+#else
 
 	return false;
+	
+#endif //WITH_EDITOR
 }
 
 void UInnerLoopFunctionLibrary::WithEditor(EBoolBranch& Branch)
@@ -38,15 +40,287 @@ void UInnerLoopFunctionLibrary::WithEditor(EBoolBranch& Branch)
 FString UInnerLoopFunctionLibrary::GetProjectVersion()
 {
 	FString ProjectVersion;
-	
-	GConfig->GetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), ProjectVersion, GGameIni);
-	   	
+	GConfig->GetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), ProjectVersion, FPaths::ProjectDir() + "Config/DefaultGame.ini");
 	return ProjectVersion;
 }
 
 void UInnerLoopFunctionLibrary::SetProjectVersion(FString Version)
 {
-	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *Version, GGameIni);
+#if WITH_EDITOR
+	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *Version, FPaths::ProjectDir() + "Config/DefaultGame.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultGame.ini");
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+#endif
+}
+
+bool UInnerLoopFunctionLibrary::GetStartInVR()
+{
+	bool bStartInVR;
+	GConfig->GetBool(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("bStartInVR"), bStartInVR, FPaths::ProjectDir() + "Config/DefaultGame.ini");
+	return bStartInVR;
+}
+
+void UInnerLoopFunctionLibrary::SetStartInVR(const bool bStartInVR)
+{
+#if WITH_EDITOR
+	GConfig->SetBool(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("bStartInVR"), bStartInVR, FPaths::ProjectDir() + "Config/DefaultGame.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultGame.ini");
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetStartInVR without the UE4 Editor.");
+#endif
+}
+
+FString UInnerLoopFunctionLibrary::GetIniStringValue(FString Path, FString Section, FString Key)
+{
+	FString ReturnValue;
+	GConfig->GetString(*Section, *Key, ReturnValue, FPaths::ProjectDir() + *Path);
+	return ReturnValue;
+}
+
+void UInnerLoopFunctionLibrary::SetIniStringValue(const FString Path, const FString Section, const FString Key, const FString Value)
+{
+#if WITH_EDITOR
+	GConfig->SetString(*Section, *Key, *Value, FPaths::ProjectDir() + *Path);
+	GConfig->Flush(false, FPaths::ProjectDir() + *Path);
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to set ini values at runtime. This is only possible in the editor.");
+#endif
+}
+
+bool UInnerLoopFunctionLibrary::GetIniSections(FString Path, TArray<FString> &Sections)
+{
+	return GConfig->GetSectionNames(FPaths::ProjectDir() + *Path, Sections);
+}
+
+bool UInnerLoopFunctionLibrary::GetIniKeys(FString Section, TArray<FString> &Keys, FString &Filename)
+{
+	return GConfig->GetSection(*Section, Keys, Filename);
+}
+
+int32 UInnerLoopFunctionLibrary::GetAndroidStoreVersion()
+{
+	FString AndroidStoreVersion;
+	GConfig->GetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("StoreVersion"), AndroidStoreVersion, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	return FCString::Atoi(*AndroidStoreVersion);
+}
+
+void UInnerLoopFunctionLibrary::SetAndroidStoreVersion(const int32 Version)
+{
+#if WITH_EDITOR
+	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("StoreVersion"), *FString::FromInt(Version), FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+#endif
+}
+
+//-----------------------
+int32 UInnerLoopFunctionLibrary::GetAndroidMinSDKVersion()
+{
+	FString AndroidMinSDKVersion;
+	GConfig->GetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("MinSDKVersion"), AndroidMinSDKVersion, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	return FCString::Atoi(*AndroidMinSDKVersion);
+}
+
+void UInnerLoopFunctionLibrary::SetAndroidMinSDKVersion(const int32 Version)
+{
+#if WITH_EDITOR
+	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("MinSDKVersion"), *FString::FromInt(Version), FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+#endif
+}
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+int32 UInnerLoopFunctionLibrary::GetAndroidTargetSDKVersion()
+{
+	FString AndroidTargetSDKVersion;
+	GConfig->GetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("TargetSDKVersion"), AndroidTargetSDKVersion, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	return FCString::Atoi(*AndroidTargetSDKVersion);
+}
+
+void UInnerLoopFunctionLibrary::SetAndroidTargetSDKVersion(const int32 Version)
+{
+#if WITH_EDITOR
+	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("TargetSDKVersion"), *FString::FromInt(Version), FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+#endif
+}
+
+//*****************
+FString UInnerLoopFunctionLibrary::GetAndroidSDKAPILevelOverride()
+{
+	FString SdkApiLevel;
+	GConfig->GetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("SDKAPILevelOverride"), SdkApiLevel, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	return SdkApiLevel;
+}
+
+void UInnerLoopFunctionLibrary::SetAndroidSDKAPILevelOverride(const FString SdkApiLevel)
+{
+#if WITH_EDITOR
+	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("SDKAPILevelOverride"), *SdkApiLevel, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+#endif
+}
+
+//-----------------------
+FString UInnerLoopFunctionLibrary::GetAndroidNDKAPILevelOverride()
+{
+	FString NdkApiLevel;
+	GConfig->GetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("NDKAPILevelOverride"), NdkApiLevel, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	return NdkApiLevel;
+}
+
+void UInnerLoopFunctionLibrary::SetAndroidNDKAPILevelOverride(const FString NdkApiLevel)
+{
+#if WITH_EDITOR
+	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("NDKAPILevelOverride"), *NdkApiLevel, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+#endif
+}
+//-----------------------
+EOnlineSubsystem UInnerLoopFunctionLibrary::GetDefaultPlatformService()
+{
+	FString DefaultPlatformService;
+	GConfig->GetString(TEXT("OnlineSubsystem"), TEXT("DefaultPlatformService"), DefaultPlatformService, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	if (DefaultPlatformService == "Oculus")
+	{
+		return EOnlineSubsystem::Oculus;
+	}
+	if (DefaultPlatformService == "Steam")
+	{
+		return EOnlineSubsystem::Steam;
+	}
+	if (DefaultPlatformService == "PICO")
+	{
+		return EOnlineSubsystem::Steam;
+	}
+	return EOnlineSubsystem::None;
+}
+
+void UInnerLoopFunctionLibrary::SetDefaultPlatformService(const EOnlineSubsystem PlatformService)
+{
+#if WITH_EDITOR
+	FString PlatformServiceString = "";
+	switch (PlatformService)
+	{
+		case EOnlineSubsystem::Oculus:
+			PlatformServiceString = "Oculus";
+			break;
+		case EOnlineSubsystem::Steam:
+			PlatformServiceString = "Steam";
+			break;
+		case EOnlineSubsystem::Pico:
+			PlatformServiceString = "PICO";
+			break;
+		default:
+			PlatformServiceString = "None";
+			break;
+	}
+	GConfig->SetString(TEXT("OnlineSubsystem"), TEXT("DefaultPlatformService"), *PlatformServiceString, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+#endif
+}
+
+void UInnerLoopFunctionLibrary::EnableOnlineSubsystem(const EOnlineSubsystem OnlineSubsystem, const bool bEnabled)
+{
+#if WITH_EDITOR
+	switch (OnlineSubsystem)
+	{
+	case EOnlineSubsystem::Oculus:
+		GConfig->SetBool(TEXT("OnlineSubsystemOculus"), TEXT("bEnabled"), bEnabled, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		break;
+	case EOnlineSubsystem::Steam:
+		GConfig->SetBool(TEXT("OnlineSubsystemSteam"), TEXT("bEnabled"), bEnabled, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		break;
+	case EOnlineSubsystem::Pico:
+		GConfig->SetBool(TEXT("OnlineSubsystemPico"), TEXT("bEnabled"), bEnabled, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		break;
+	default:
+		break;
+	}
+#endif
+}
+
+bool UInnerLoopFunctionLibrary::IsOnlineSubsystemEnabled(const EOnlineSubsystem OnlineSubsystem)
+{
+	bool IsOnlineSubsystemEnabled = false;
+	switch (OnlineSubsystem)
+	{
+	case EOnlineSubsystem::Oculus:
+		GConfig->GetBool(TEXT("OnlineSubsystemOculus"), TEXT("bEnabled"), IsOnlineSubsystemEnabled, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		return IsOnlineSubsystemEnabled;
+	case EOnlineSubsystem::Steam:
+		GConfig->GetBool(TEXT("OnlineSubsystemSteam"), TEXT("bEnabled"), IsOnlineSubsystemEnabled, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		return IsOnlineSubsystemEnabled;
+	case EOnlineSubsystem::Pico:
+		GConfig->GetBool(TEXT("OnlineSubsystemPico"), TEXT("bEnabled"), IsOnlineSubsystemEnabled, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+		return IsOnlineSubsystemEnabled;
+	default:
+		return IsOnlineSubsystemEnabled;	
+	}
+}
+
+FString UInnerLoopFunctionLibrary::GetSteamAppID()
+{
+	FString SteamAppID = "";
+	GConfig->GetString(TEXT("OnlineSubsystemSteam"),TEXT("SteamAppId"), SteamAppID,FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	return SteamAppID;
+}
+
+void UInnerLoopFunctionLibrary::SetSteamAppID(FString AppID)
+{
+	GConfig->SetString(TEXT("OnlineSubsystemSteam"),TEXT("SteamAppId"), *AppID,FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+}
+
+//-----------------------
+
+void UInnerLoopFunctionLibrary::GetHMDDevicePriority(int32& OculusHMD, int32& SteamVR, int32& OpenXRHMD, int32& WindowsMixedRealityHMD, int32& PICOXRHMD)
+{
+	GConfig->GetInt(TEXT("HMDPluginPriority"), TEXT("OculusHMD"), OculusHMD, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->GetInt(TEXT("HMDPluginPriority"), TEXT("SteamVR"), SteamVR, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->GetInt(TEXT("HMDPluginPriority"), TEXT("OpenXRHMD"), OpenXRHMD, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->GetInt(TEXT("HMDPluginPriority"), TEXT("WindowsMixedRealityHMD"), WindowsMixedRealityHMD, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->GetInt(TEXT("HMDPluginPriority"), TEXT("PICOXRHMD"), PICOXRHMD, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+}
+
+void UInnerLoopFunctionLibrary::SetHMDDevicePriority(const int32 OculusHMD, const int32 SteamVR, const int32 OpenXRHMD, const int32 WindowsMixedRealityHMD, const int32 PICOXRHMD)
+{
+	GConfig->SetInt(TEXT("HMDPluginPriority"), TEXT("OculusHMD"), OculusHMD, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->SetInt(TEXT("HMDPluginPriority"), TEXT("SteamVR"), SteamVR, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->SetInt(TEXT("HMDPluginPriority"), TEXT("OpenXRHMD"), OpenXRHMD, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->SetInt(TEXT("HMDPluginPriority"), TEXT("WindowsMixedRealityHMD"), WindowsMixedRealityHMD, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->SetInt(TEXT("HMDPluginPriority"), TEXT("PICOXRHMD"), PICOXRHMD, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+}
+
+//-----------------------
+
+FString UInnerLoopFunctionLibrary::GetAndroidVersionDisplayName()
+{
+	FString AndroidVersionDisplayName;
+	GConfig->GetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("VersionDisplayName"), AndroidVersionDisplayName, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	return AndroidVersionDisplayName;
+}
+
+void UInnerLoopFunctionLibrary::SetAndroidVersionDisplayName(FString Version)
+{
+#if WITH_EDITOR
+	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("VersionDisplayName"), *Version, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
+#else
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetAndroidVersionDisplayName without the UE4 Editor.");
+#endif
 }
 
 FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
@@ -60,7 +334,7 @@ FString UInnerLoopFunctionLibrary::GetTextFromFile(FString File)
 
 ELogVerbosityBP UInnerLoopFunctionLibrary::GetLogVerbosity()
 {
-	ELogVerbosity::Type LogVerbosity = UE_GET_LOG_VERBOSITY(LogInnerLoopLLC);
+	const ELogVerbosity::Type LogVerbosity = UE_GET_LOG_VERBOSITY(LogInnerLoopLLC);
 	switch (LogVerbosity)
 	{
 	case ELogVerbosity::Log:
@@ -94,9 +368,9 @@ void UInnerLoopFunctionLibrary::SetLogVerbosity(const ELogVerbosityBP Verbosity)
 	}
 }
 
-void UInnerLoopFunctionLibrary::PrintToLog(const ELogVerbosityBP Verbosity, const FString Prefix, const FString String, bool bPrintToScreen, float Duration)
+void UInnerLoopFunctionLibrary::PrintToLog(const ELogVerbosityBP Verbosity, const FString Prefix, const FString String, const bool bPrintToScreen, float Duration)
 {
-	FString FinalString = Prefix + String;
+	const FString FinalString = Prefix + String;
 	switch (Verbosity)
 	{
 	case ELogVerbosityBP::Log:
@@ -146,12 +420,10 @@ int64 UInnerLoopFunctionLibrary::ToUnixTimestamp(const FDateTime DateTime)
 
 FVector UInnerLoopFunctionLibrary::GetBasePosition()
 {
-	FVector BasePosition = GEngine->XRSystem->GetBasePosition();
-
-	return BasePosition;
+	return GEngine->XRSystem->GetBasePosition();
 }
 
-void UInnerLoopFunctionLibrary::SetBasePosition(FVector Position)
+void UInnerLoopFunctionLibrary::SetBasePosition(const FVector Position)
 {
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
 	{
@@ -161,12 +433,10 @@ void UInnerLoopFunctionLibrary::SetBasePosition(FVector Position)
 
 FRotator UInnerLoopFunctionLibrary::GetBaseRotation()
 {
-	FRotator BaseRotation = GEngine->XRSystem->GetBaseRotation();
-
-	return BaseRotation;
+	return GEngine->XRSystem->GetBaseRotation();
 }
 
-void UInnerLoopFunctionLibrary::SetBaseRotation(FRotator Rotation)
+void UInnerLoopFunctionLibrary::SetBaseRotation(const FRotator Rotation)
 {
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
 	{
@@ -176,16 +446,13 @@ void UInnerLoopFunctionLibrary::SetBaseRotation(FRotator Rotation)
 
 FTransform UInnerLoopFunctionLibrary::GetBaseRotationAndPosition()
 {
-	FRotator BaseRotation = GEngine->XRSystem->GetBaseRotation();
-	FVector BasePosition = GEngine->XRSystem->GetBasePosition();
-
-	return FTransform(BaseRotation, BasePosition);
+	return FTransform(GEngine->XRSystem->GetBaseRotation(), GEngine->XRSystem->GetBasePosition());
 }
 
-void UInnerLoopFunctionLibrary::SetBaseRotationAndPosition(FTransform Transform)
+void UInnerLoopFunctionLibrary::SetBaseRotationAndPosition(const FTransform Transform)
 {
-	FRotator Rotation = Transform.Rotator();
-	FVector Position = Transform.GetLocation();
+	const FRotator Rotation = Transform.Rotator();
+	const FVector Position = Transform.GetLocation();
 
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
 	{
@@ -194,11 +461,11 @@ void UInnerLoopFunctionLibrary::SetBaseRotationAndPosition(FTransform Transform)
 	}
 }
 
-void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(float Yaw, EOrientPositionSelector::Type Options, bool bKeepZ)
+void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(const float Yaw, const EOrientPositionSelector::Type Options, const bool bKeepZ)
 {
 	if (GEngine->XRSystem.IsValid() && GEngine->XRSystem->IsHeadTrackingAllowed())
 	{
-		FVector OldBasePosition = GEngine->XRSystem->GetBasePosition();
+		const FVector OldBasePosition = GEngine->XRSystem->GetBasePosition();
 		
 		switch (Options)
 		{
@@ -214,9 +481,9 @@ void UInnerLoopFunctionLibrary::ResetOrientationAndPositionZ(float Yaw, EOrientP
 
 		if (bKeepZ == true)
 		{
-			FVector BasePosition = GEngine->XRSystem->GetBasePosition();
+			const FVector BasePosition = GEngine->XRSystem->GetBasePosition();
 
-			FVector NewPosition = FVector(BasePosition.X, BasePosition.Y, OldBasePosition.Z);
+			const FVector NewPosition = FVector(BasePosition.X, BasePosition.Y, OldBasePosition.Z);
 
 			GEngine->XRSystem->SetBasePosition(NewPosition);
 		}
@@ -228,11 +495,16 @@ UTexture* UInnerLoopFunctionLibrary::GetSpectatorScreenTexture()
 	IHeadMountedDisplay* HMD = GEngine->XRSystem.IsValid() ? GEngine->XRSystem->GetHMDDevice() : nullptr;
 	if (HMD)
 	{
-		ISpectatorScreenController* const Controller = HMD->GetSpectatorScreenController();
+		const ISpectatorScreenController* Controller = HMD->GetSpectatorScreenController();
 		return Controller->GetSpectatorScreenTexture();	
 	}
 
 	return nullptr;
+}
+
+FName UInnerLoopFunctionLibrary::GetHMDSystemName()
+{	
+	return GEngine->XRSystem.IsValid() ? GEngine->XRSystem->GetSystemName() : "";
 }
 
 // --------------------
@@ -257,14 +529,12 @@ FName UInnerLoopFunctionLibrary::RHIShaderFormatName()
 FString UInnerLoopFunctionLibrary::CPUBrand()
 {
 #if PLATFORM_WINDOWS
-		return FWindowsPlatformMisc::GetCPUBrand();
-#endif
-#if PLATFORM_ANDROID
-		return FAndroidMisc::GetCPUBrand();
-#endif
-#if PLATFORM_PS4
-		//this is a pointless stub since we don't care what CPU the PS4 has
-		return "PS4 CPU";
+	return FWindowsPlatformMisc::GetCPUBrand();
+#elif PLATFORM_ANDROID
+	return FAndroidMisc::GetCPUBrand();
+#else
+	//this is a pointless stub since we don't care what CPU other platforms have
+	return "Unknown";
 #endif
 }
 
@@ -272,13 +542,11 @@ FString UInnerLoopFunctionLibrary::CPUChipset()
 {
 #if PLATFORM_WINDOWS
 	return FWindowsPlatformMisc::GetCPUChipset();
-#endif
-#if PLATFORM_ANDROID
+#elif PLATFORM_ANDROID
 	return 	FAndroidMisc::GetCPUChipset();
-#endif
-#if PLATFORM_PS4
-	//this is a pointless stub since we don't care what CPU the PS4 has
-	return "PS4 CPU";
+#else
+	//this is a pointless stub since we don't care what CPU other platforms have
+	return "Unknown";
 #endif
 }
 
@@ -286,13 +554,11 @@ FString UInnerLoopFunctionLibrary::CPUVendor()
 {
 #if PLATFORM_WINDOWS
 	return FWindowsPlatformMisc::GetCPUVendor();
-#endif
-#if PLATFORM_ANDROID
+#elif PLATFORM_ANDROID
 	return FAndroidMisc::GetCPUVendor();
-#endif
-#if PLATFORM_PS4
-	//this is a pointless stub since we don't care what CPU the PS4 has
-	return "PS4 CPU";
+#else
+	//this is a pointless stub since we don't care what CPU other platforms have
+	return "Unknown";
 #endif
 }
 
@@ -310,13 +576,13 @@ void UInnerLoopFunctionLibrary::UnloadStreamingLevel(ULevelStreamingDynamic* Lev
 	}
 }
 
-float UInnerLoopFunctionLibrary::GetCustomDataValue(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, int32 CustomDataIndex)
+float UInnerLoopFunctionLibrary::GetCustomDataValue(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, const int32 InstanceIndex, const int32 CustomDataIndex)
 {
 	// Expose Per Instance Custom Data as float (>=4.25 only!)
 	
 	float CustomDataValue = 0.0f;
 
-#if ENGINE_MINOR_VERSION >= 25
+#if (ENGINE_MAJOR_VERSION == 4 && ENGINE_MINOR_VERSION >= 25) || ENGINE_MAJOR_VERSION >= 5
 	
 	if (InstancedStaticMeshComponent->PerInstanceSMData.IsValidIndex(InstanceIndex))
 	{
@@ -326,4 +592,9 @@ float UInnerLoopFunctionLibrary::GetCustomDataValue(UInstancedStaticMeshComponen
 #endif
 
 	return CustomDataValue;
+}
+
+void UInnerLoopFunctionLibrary::ArbitraryUndefinedBehavior()
+{
+	UE_LOG(LogInnerLoopLLC, Fatal, TEXT("%s"), *FString("Arbitrary undefined behavior."));
 }
