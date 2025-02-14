@@ -563,6 +563,38 @@ FString UInnerLoopFunctionLibrary::CPUVendor()
 }
 
 // --------------------
+// PSO Caching
+// --------------------
+
+bool UInnerLoopFunctionLibrary::IsPSOCacheCompiling()
+{
+	return FShaderPipelineCache::NumPrecompilesRemaining() > 0;
+}
+
+void UInnerLoopFunctionLibrary::SetPSOCacheCompiling(const bool Enable)
+{
+	if (Enable)
+	{
+		FShaderPipelineCache::ResumeBatching();
+	} 
+	else 
+	{
+		FShaderPipelineCache::PauseBatching();
+	}
+}
+
+void UInnerLoopFunctionLibrary::SetPrecompilePSOCache(EPSOCachingBatchMode BatchMode)
+{
+	FShaderPipelineCache::SetBatchMode(static_cast<FShaderPipelineCache::BatchMode>(BatchMode));
+}
+
+int32 UInnerLoopFunctionLibrary::NumPSOShadersLeft()
+{
+	return FShaderPipelineCache::NumPrecompilesRemaining();
+}
+
+
+// --------------------
 // Misc
 // --------------------
 

@@ -27,6 +27,7 @@
 #include "Engine/LevelStreamingDynamic.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/InstancedStaticMeshComponent.h"
+#include "ShaderPipelineCache.h"
 
 // XR
 #include "HeadMountedDisplayTypes.h"
@@ -69,6 +70,14 @@ enum class EOnlineSubsystem : uint8
 	Pico,
 	Steam,
 	None
+};
+
+UENUM(BlueprintType)
+enum class EPSOCachingBatchMode : uint8
+{
+	Background, // The maximum batch size is defined by r.ShaderPipelineCache.BackgroundBatchSize
+	Fast, // The maximum batch size is defined by r.ShaderPipelineCache.BatchSize
+	Precompile // The maximum batch size is defined by r.ShaderPipelineCache.PrecompileBatchSize
 };
 
 UCLASS()
@@ -278,6 +287,22 @@ public:
 	// Returns as string the vendor of installed CPU.
 	UFUNCTION(BlueprintPure, Category = "InnerLoop LLC|System Info")
 	static FString CPUVendor();
+
+	// --------------------
+	// PSO Caching
+	// --------------------
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|PSO Caching")
+	static bool IsPSOCacheCompiling();
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|PSO Caching")
+	static void SetPSOCacheCompiling(bool Enable);
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|PSO Caching")
+	static void SetPrecompilePSOCache(EPSOCachingBatchMode BatchMode = EPSOCachingBatchMode::Fast);
+
+	UFUNCTION(BlueprintCallable, Category = "InnerLoop LLC|PSO Caching")
+	static int32 NumPSOShadersLeft();
 
 	// --------------------
 	// Misc
