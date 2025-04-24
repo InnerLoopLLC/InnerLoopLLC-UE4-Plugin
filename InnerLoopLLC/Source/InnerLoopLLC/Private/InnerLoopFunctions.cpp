@@ -50,7 +50,7 @@ void UInnerLoopFunctionLibrary::SetProjectVersion(FString Version)
 	GConfig->SetString(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), *Version, FPaths::ProjectDir() + "Config/DefaultGame.ini");
 	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultGame.ini");
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to SetProjectVersion without the UE4 Editor."));
 #endif
 }
 
@@ -67,7 +67,7 @@ void UInnerLoopFunctionLibrary::SetStartInVR(const bool bStartInVR)
 	GConfig->SetBool(TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("bStartInVR"), bStartInVR, FPaths::ProjectDir() + "Config/DefaultGame.ini");
 	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultGame.ini");
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetStartInVR without the UE4 Editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to SetStartInVR without the UE4 Editor."));
 #endif
 }
 
@@ -84,7 +84,7 @@ void UInnerLoopFunctionLibrary::SetIniStringValue(const FString Path, const FStr
 	GConfig->SetString(*Section, *Key, *Value, FPaths::ProjectDir() + *Path);
 	GConfig->Flush(false, FPaths::ProjectDir() + *Path);
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to set ini values at runtime. This is only possible in the editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to set ini values at runtime. This is only possible in the editor."));
 #endif
 }
 
@@ -111,7 +111,7 @@ void UInnerLoopFunctionLibrary::SetAndroidStoreVersion(const int32 Version)
 	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("StoreVersion"), *FString::FromInt(Version), FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to SetAndroidStoreVersion without the UE4 Editor."));
 #endif
 }
 
@@ -129,7 +129,7 @@ void UInnerLoopFunctionLibrary::SetAndroidMinSDKVersion(const int32 Version)
 	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("MinSDKVersion"), *FString::FromInt(Version), FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to SetAndroidMinSDKVersion without the UE4 Editor."));
 #endif
 }
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,7 +146,7 @@ void UInnerLoopFunctionLibrary::SetAndroidTargetSDKVersion(const int32 Version)
 	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("TargetSDKVersion"), *FString::FromInt(Version), FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to SetAndroidTargetSDKVersion without the UE4 Editor."));
 #endif
 }
 
@@ -164,7 +164,7 @@ void UInnerLoopFunctionLibrary::SetAndroidSDKAPILevelOverride(const FString SdkA
 	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("SDKAPILevelOverride"), *SdkApiLevel, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to SetAndroidSDKAPILevelOverride without the UE4 Editor."));
 #endif
 }
 
@@ -182,7 +182,7 @@ void UInnerLoopFunctionLibrary::SetAndroidNDKAPILevelOverride(const FString NdkA
 	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("NDKAPILevelOverride"), *NdkApiLevel, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetProjectVersion without the UE4 Editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to SetAndroidNDKAPILevelOverride without the UE4 Editor."));
 #endif
 }
 //-----------------------
@@ -319,7 +319,7 @@ void UInnerLoopFunctionLibrary::SetAndroidVersionDisplayName(FString Version)
 	GConfig->SetString(TEXT("/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"), TEXT("VersionDisplayName"), *Version, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 	GConfig->Flush(false, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 #else
-	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), "Unable to SetAndroidVersionDisplayName without the UE4 Editor.");
+	UE_LOG(LogInnerLoopLLC, Log, TEXT("%s"), *FString("Unable to SetAndroidVersionDisplayName without the UE4 Editor."));
 #endif
 }
 
